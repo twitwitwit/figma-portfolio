@@ -1,0 +1,1270 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Frances Margarett — Web Developer × UI Designer. BSIT student focused on PHP, MySQL, HTML, CSS, JavaScript, Figma, and practical systems.>"
+    />
+    <title>Frances Margarett | Web Developer × UI Designer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="scroll-progress" id="scroll-progress"></div>
+    <div class="ambient-bg">
+      <div class="glow-orb orb-1"></div>
+      <div class="glow-orb orb-2"></div>
+      <div class="glow-orb orb-3"></div>
+      <div class="grid-overlay"></div>
+    </div>
+
+    <div id="loader-wrapper">
+      <div class="loader-content">
+        <div class="loader-logo">TWIT<span>.WITWIT</span></div>
+        <div class="loader-bar"><div class="loader-progress"></div></div>
+        <div class="loader-status">BUILDING PORTFOLIO ...</div>
+      </div>
+    </div>
+
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <header class="navbar" id="navbar">
+      <div class="container nav-container">
+        <a href="#home" class="logo"
+          ><span class="logo-badge">&lt;/&gt;</span> TWIT<span class="dot"
+            >.WITWIT</span
+          ></a
+        >
+        <div class="nav-right">
+          <nav>
+            <ul class="nav-links">
+              <li>
+                <a href="#home" class="active"
+                  ><i class="fas fa-house"></i> Overview</a
+                >
+              </li>
+              <li>
+                <a href="#about"><i class="fas fa-user"></i> About</a>
+              </li>
+              <li>
+                <a href="#skills"><i class="fas fa-code"></i> Skills</a>
+              </li>
+              <li>
+                <a href="#experience"
+                  ><i class="fas fa-briefcase"></i> Experience</a
+                >
+              </li>
+              <li>
+                <a href="#projects"
+                  ><i class="fas fa-folder-open"></i> Projects</a
+                >
+              </li>
+              <li>
+                <a href="#process"
+                  ><i class="fas fa-diagram-project"></i> Process</a
+                >
+              </li>
+              <li>
+                <a href="#contact"
+                  ><i class="fas fa-paper-plane"></i> Contact</a
+                >
+              </li>
+            </ul>
+          </nav>
+          <div class="nav-actions">
+            <button
+              class="theme-toggle"
+              id="theme-btn"
+              title="Toggle Theme"
+              aria-label="Toggle Theme"
+            >
+              <i class="fas fa-moon"></i>
+            </button>
+            <button
+              class="terminal-trigger-btn"
+              id="open-terminal-btn"
+              title="Open IT Shell"
+            >
+              <i class="fas fa-terminal"></i>
+            </button>
+            <div class="burger" id="burger-menu" aria-label="Toggle Navigation">
+              <div class="line1"></div>
+              <div class="line2"></div>
+              <div class="line3"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section id="home" class="hero-section">
+        <canvas id="hero-canvas"></canvas>
+        <div class="container hero-container">
+          <div class="hero-grid">
+            <div class="hero-content">
+              <div class="status-badge">
+                <span class="status-dot"></span> AVAILABLE TO BUILD // BSIT
+                STUDENT
+              </div>
+              <h2 class="hero-greeting">Hello, I'm</h2>
+              <h1 class="hero-name">FRANCES MARGARETT<span>.</span></h1>
+              <div class="type-container">
+                <span class="type-prefix">&gt; </span
+                ><span class="type-text"></span
+                ><span class="type-cursor">|</span>
+              </div>
+              <h3 class="hero-tagline">BUILD. BREAK. LEARN. IMPROVE.</h3>
+              <p class="hero-headline-sub">
+                I turn ideas into practical systems and thoughtful digital
+                interfaces using PHP, MySQL, HTML, CSS, JavaScript, and Figma.
+              </p>
+              <div class="hero-cta-btns">
+                <a href="#projects" class="btn btn-primary"
+                  ><span>Explore Projects</span
+                  ><i class="fas fa-arrow-right"></i
+                ></a>
+                <a href="#about" class="btn btn-secondary"
+                  ><i class="fas fa-user"></i><span>About Me</span></a
+                >
+                <a href="#contact" class="btn btn-glass"
+                  ><i class="fas fa-paper-plane"></i
+                  ><span>Let's Connect</span></a
+                >
+              </div>
+              <div class="hero-quick-stats">
+                <div class="stat-item">
+                  <span class="stat-number">PHP</span
+                  ><span class="stat-label">Backend</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                  <span class="stat-number">MySQL</span
+                  ><span class="stat-label">Database</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                  <span class="stat-number">Figma</span
+                  ><span class="stat-label">UI / UX</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="hero-visual">
+              <div class="id-card-wrapper" id="id-card-3d">
+                <div class="badge-lanyard">
+                  <div class="lanyard-ribbon"></div>
+                  <div class="lanyard-clip"></div>
+                  <div class="badge-hole"></div>
+                </div>
+                <div class="id-card-container">
+                  <div class="id-card-header">
+                    <div class="id-logo-text">
+                      <i class="fas fa-id-card"></i> DEV PASS // IT
+                    </div>
+                    <div class="id-status-pill">
+                      <i class="fas fa-wifi"></i> BUILDING
+                    </div>
+                  </div>
+                  <div class="id-photo-frame">
+                    <img
+                      src="profile1.png"
+                      alt="Frances Margarett"
+                      class="id-photo"
+                      onerror="
+                        this.src =
+                          'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=600&auto=format&fit=crop'
+                      "
+                    />
+                    <div class="photo-scan-line"></div>
+                  </div>
+                  <div class="id-details">
+                    <h3 class="id-name">FRANCES MARGARETT</h3>
+                    <div class="id-role">Web Developer × UI Designer</div>
+                    <div class="id-meta-grid">
+                      <div class="meta-box">
+                        <span class="meta-label">DEGREE</span
+                        ><span class="meta-val">BSIT</span>
+                      </div>
+                      <div class="meta-box">
+                        <span class="meta-label">SCHOOL</span
+                        ><span class="meta-val">Bestlink College</span>
+                      </div>
+                      <div class="meta-box">
+                        <span class="meta-label">LOCATION</span
+                        ><span class="meta-val">Caloocan City</span>
+                      </div>
+                      <div class="meta-box">
+                        <span class="meta-label">FOCUS</span
+                        ><span class="meta-val">Web + UI</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="id-card-footer">
+                    <div class="barcode-lines">
+                      <span></span><span></span><span></span><span></span
+                      ><span></span><span></span><span></span><span></span
+                      ><span></span><span></span><span></span><span></span
+                      ><span></span><span></span><span></span>
+                    </div>
+                    <div class="id-serial">IDEAS → SYSTEMS → INTERFACES</div>
+                  </div>
+                </div>
+                <div class="floating-tech-pill tag-html">
+                  <i class="fab fa-php"></i> PHP
+                </div>
+                <div class="floating-tech-pill tag-css">
+                  <i class="fas fa-database"></i> MySQL
+                </div>
+                <div class="floating-tech-pill tag-cpp">
+                  <i class="fab fa-figma"></i> Figma
+                </div>
+                <div class="floating-tech-pill tag-js">
+                  <i class="fab fa-js"></i> JavaScript
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="about-section">
+        <div class="container">
+          <div class="section-header center">
+            <span class="section-badge">ABOUT ME</span>
+            <h2 class="section-title">Hi, I'm Frances<span>.</span></h2>
+            <p class="section-desc">
+              A BSIT student focused on practical web development, database
+              systems, UI design, and learning through real projects.
+            </p>
+          </div>
+          <div class="about-card">
+            <div class="about-grid">
+              <div class="about-image-wrapper">
+                <div class="image-frame">
+                  <img
+                    src="profile.png"
+                    alt="Frances Margarett"
+                    onerror="
+                      this.src =
+                        'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=600&auto=format&fit=crop'
+                    "
+                  />
+                  <div class="image-badge">
+                    <i class="fas fa-graduation-cap"></i> BSIT Student
+                  </div>
+                </div>
+              </div>
+              <div class="about-text">
+                <span class="section-badge">WEB DEVELOPER × UI DESIGNER</span>
+                <h2 class="section-title">I learn by building<span>.</span></h2>
+                <p class="about-lead">
+                  I'm currently pursuing a Bachelor of Science in Information
+                  Technology at Bestlink College of the Philippines.
+                </p>
+                <p class="about-body">
+                  I became interested in creating systems that are not only
+                  functional but also understandable and enjoyable to use. I
+                  like taking an idea, breaking it into smaller problems,
+                  designing a solution, building it, debugging what doesn't
+                  work, and continuously improving the result.
+                </p>
+                <div class="about-highlights">
+                  <div class="hl-box">
+                    <i class="fas fa-laptop-code"></i>
+                    <div>
+                      <h4>Focus</h4>
+                      <p>Web Development</p>
+                    </div>
+                  </div>
+                  <div class="hl-box">
+                    <i class="fas fa-database"></i>
+                    <div>
+                      <h4>Database</h4>
+                      <p>MySQL Systems</p>
+                    </div>
+                  </div>
+                  <div class="hl-box">
+                    <i class="fab fa-figma"></i>
+                    <div>
+                      <h4>Design</h4>
+                      <p>Figma & Prototyping</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="about-actions">
+                  <a href="#contact" class="btn btn-primary"
+                    ><span>Connect With Me</span
+                    ><i class="fas fa-paper-plane"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="folder-section" id="what-i-do">
+        <div class="container">
+          <div class="section-header center">
+            <span class="section-badge">WHAT I DO BEST</span>
+            <h2 class="section-title">
+              From Ideas to Working Systems<span>.</span>
+            </h2>
+            <p class="section-desc">
+              The parts of development and design I enjoy most.
+            </p>
+          </div>
+          <div class="folder-binder">
+            <div class="folder-tabs-header">
+              <button class="folder-tab active" data-target="tab-overview">
+                <i class="fas fa-cubes"></i><span>Practical Systems</span>
+              </button>
+              <button class="folder-tab" data-target="tab-web">
+                <i class="fas fa-laptop-code"></i><span>Interfaces</span>
+              </button>
+              <button class="folder-tab" data-target="tab-cpp">
+                <i class="fas fa-hammer"></i><span>Learn by Building</span>
+              </button>
+              <button class="folder-tab" data-target="tab-ui">
+                <i class="fas fa-rotate"></i><span>Iteration</span>
+              </button>
+            </div>
+            <div class="folder-body">
+              <div class="tab-panel active" id="tab-overview">
+                <div class="panel-hero-quote">
+                  <i class="fas fa-quote-left quote-icon"></i>
+                  <h3>Building things is how I understand them.</h3>
+                  <p>
+                    I enjoy creating systems that solve real problems and make
+                    repetitive or complicated tasks easier to manage.
+                  </p>
+                </div>
+                <div class="overview-pillars">
+                  <div class="pillar-card">
+                    <div class="pillar-num">01</div>
+                    <div class="pillar-icon"><i class="fas fa-cubes"></i></div>
+                    <h4>Building Practical Systems</h4>
+                    <p>
+                      Creating useful systems that make real workflows easier to
+                      manage.
+                    </p>
+                  </div>
+                  <div class="pillar-card">
+                    <div class="pillar-num">02</div>
+                    <div class="pillar-icon">
+                      <i class="fas fa-wand-magic-sparkles"></i>
+                    </div>
+                    <h4>Turning Ideas Into Interfaces</h4>
+                    <p>
+                      Using Figma to explore wireframes, prototypes,
+                      interaction, and interface structure.
+                    </p>
+                  </div>
+                  <div class="pillar-card">
+                    <div class="pillar-num">03</div>
+                    <div class="pillar-icon"><i class="fas fa-repeat"></i></div>
+                    <h4>Improving Through Iteration</h4>
+                    <p>
+                      Testing, finding problems, understanding what went wrong,
+                      and refining the result.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-panel" id="tab-web">
+                <div class="panel-grid-2col">
+                  <div class="panel-text">
+                    <span class="panel-tag">SYSTEM BUILDING</span>
+                    <h3>Web Development</h3>
+                    <p>
+                      I build practical web applications from front-end
+                      interfaces to back-end logic and database operations.
+                    </p>
+                    <ul class="check-list">
+                      <li>
+                        <i class="fas fa-check-circle"></i> PHP and MySQL
+                        development
+                      </li>
+                      <li>
+                        <i class="fas fa-check-circle"></i> CRUD systems and
+                        database integration
+                      </li>
+                      <li>
+                        <i class="fas fa-check-circle"></i> Form handling and
+                        file uploads
+                      </li>
+                      <li>
+                        <i class="fas fa-check-circle"></i> Responsive front-end
+                        development
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="panel-preview-card">
+                    <div class="tech-stack-pills">
+                      <span class="tech-pill"
+                        ><i class="fab fa-php"></i> PHP</span
+                      ><span class="tech-pill"
+                        ><i class="fas fa-database"></i> MySQL</span
+                      ><span class="tech-pill"
+                        ><i class="fab fa-js"></i> JavaScript</span
+                      >
+                    </div>
+                    <div class="code-snippet-box">
+                      <div class="code-header">
+                        <span class="dot red"></span
+                        ><span class="dot yellow"></span
+                        ><span class="dot green"></span
+                        ><span class="title">system-build.php</span>
+                      </div>
+                      <pre><code><span class="k">$system</span> = [
+  <span class="s">"frontend"</span> =&gt; [<span class="s">"HTML"</span>, <span class="s">"CSS"</span>, <span class="s">"JS"</span>],
+  <span class="s">"backend"</span>  =&gt; <span class="s">"PHP"</span>,
+  <span class="s">"database"</span> =&gt; <span class="s">"MySQL"</span>
+];</code></pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-panel" id="tab-cpp">
+                <div class="panel-grid-2col">
+                  <div class="panel-text">
+                    <span class="panel-tag">LEARNING STYLE</span>
+                    <h3>Learn by Building</h3>
+                    <p>
+                      I learn best through experimentation and actual projects.
+                      Building something gives me a better understanding of how
+                      technologies work together.
+                    </p>
+                    <ul class="check-list">
+                      <li>
+                        <i class="fas fa-check-circle"></i> Build small working
+                        features
+                      </li>
+                      <li>
+                        <i class="fas fa-check-circle"></i> Break and debug what
+                        fails
+                      </li>
+                      <li>
+                        <i class="fas fa-check-circle"></i> Investigate root
+                        causes
+                      </li>
+                      <li>
+                        <i class="fas fa-check-circle"></i> Apply lessons to the
+                        next iteration
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="panel-preview-card center-card">
+                    <div class="ui-preview-mockup">
+                      <div class="mockup-header">
+                        LEARN → BUILD → DEBUG → REPEAT
+                      </div>
+                      <div class="mockup-body">
+                        <div class="mockup-bar flex-bar">
+                          <div class="mockup-pill bg-cyan"></div>
+                          <div class="mockup-pill bg-purple"></div>
+                        </div>
+                        <div class="mockup-box glow-box">
+                          <i class="fas fa-code"></i
+                          ><span>Hands-on development</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-panel" id="tab-ui">
+                <div class="panel-grid-2col">
+                  <div class="panel-text">
+                    <span class="panel-tag">DESIGN EXPLORATION</span>
+                    <h3>UI / UX & Prototyping</h3>
+                    <p>
+                      I use Figma to turn concepts into interfaces, wireframes,
+                      prototypes, and interactive experiences before
+                      development.
+                    </p>
+                    <ul class="check-list">
+                      <li>
+                        <i class="fas fa-check-circle"></i> UI and layout design
+                      </li>
+                      <li>
+                        <i class="fas fa-check-circle"></i> Wireframing and
+                        prototyping
+                      </li>
+                      <li>
+                        <i class="fas fa-check-circle"></i> Interaction design
+                      </li>
+                      <li>
+                        <i class="fas fa-check-circle"></i> Micro-interactions
+                        and interface states
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="panel-preview-card center-card">
+                    <div class="ui-preview-mockup">
+                      <div class="mockup-header">
+                        FIGMA PROTOTYPE EXPLORATION
+                      </div>
+                      <div class="mockup-body">
+                        <div class="mockup-box glow-box">
+                          <i class="fab fa-figma"></i
+                          ><span>Ideas into interfaces</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="skills" class="skills-section">
+        <div class="container">
+          <div class="section-header center">
+            <span class="section-badge">SKILLS & CAPABILITIES</span>
+            <h2 class="section-title">My Technical Toolkit<span>.</span></h2>
+            <p class="section-desc">
+              The technologies, practices, and tools I use while building and
+              learning.
+            </p>
+          </div>
+          <div class="skills-grid">
+            <div class="skill-card">
+              <div class="skill-head">
+                <div class="skill-icon-box"><i class="fas fa-globe"></i></div>
+                <div class="skill-title-group">
+                  <h3>Web Development</h3>
+                  <span class="skill-cat">Frontend + Backend</span>
+                </div>
+                <span class="skill-percent">PHP</span>
+              </div>
+              <div class="skill-tags">
+                <span class="tag">PHP</span><span class="tag">HTML</span
+                ><span class="tag">CSS</span><span class="tag">JavaScript</span
+                ><span class="tag">Responsive Design</span
+                ><span class="tag">CRUD</span
+                ><span class="tag">File Uploads</span>
+              </div>
+            </div>
+            <div class="skill-card">
+              <div class="skill-head">
+                <div class="skill-icon-box">
+                  <i class="fas fa-database"></i>
+                </div>
+                <div class="skill-title-group">
+                  <h3>Database</h3>
+                  <span class="skill-cat">Data + Integration</span>
+                </div>
+                <span class="skill-percent">SQL</span>
+              </div>
+              <div class="skill-tags">
+                <span class="tag">MySQL</span><span class="tag">phpMyAdmin</span
+                ><span class="tag">Database Design</span
+                ><span class="tag">CRUD Operations</span
+                ><span class="tag">Integration</span>
+              </div>
+            </div>
+            <div class="skill-card">
+              <div class="skill-head">
+                <div class="skill-icon-box"><i class="fab fa-figma"></i></div>
+                <div class="skill-title-group">
+                  <h3>UI / UX & Design</h3>
+                  <span class="skill-cat">Interface + Prototyping</span>
+                </div>
+                <span class="skill-percent">UI</span>
+              </div>
+              <div class="skill-tags">
+                <span class="tag">Figma</span
+                ><span class="tag">Wireframing</span
+                ><span class="tag">Prototyping</span
+                ><span class="tag">Interaction Design</span
+                ><span class="tag">Layout Design</span>
+              </div>
+            </div>
+            <div class="skill-card">
+              <div class="skill-head">
+                <div class="skill-icon-box">
+                  <i class="fas fa-screwdriver-wrench"></i>
+                </div>
+                <div class="skill-title-group">
+                  <h3>Development Practices</h3>
+                  <span class="skill-cat">Build + Improve</span>
+                </div>
+                <span class="skill-percent">ITERATE</span>
+              </div>
+              <div class="skill-tags">
+                <span class="tag">Debugging</span
+                ><span class="tag">Problem Solving</span
+                ><span class="tag">Git</span><span class="tag">Deployment</span
+                ><span class="tag">Hosting</span
+                ><span class="tag">Testing</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="experience" class="projects-section">
+        <div class="container">
+          <div class="section-header center">
+            <span class="section-badge">EXPERIENCE</span>
+            <h2 class="section-title">
+              Constech Asia Corporation<span>.</span>
+            </h2>
+            <p class="section-desc">
+              System Developer / Developer — practical experience building an
+              internal management and inventory system.
+            </p>
+          </div>
+          <div class="about-card">
+            <div class="panel-grid-2col">
+              <div class="panel-text">
+                <span class="panel-tag">SYSTEM DEVELOPER / DEVELOPER</span>
+                <h3>Internal Management & Inventory System</h3>
+                <p>
+                  Worked on a web-based internal system designed to manage
+                  products and related information digitally.
+                </p>
+                <ul class="check-list">
+                  <li>
+                    <i class="fas fa-check-circle"></i> Developed web-based
+                    system functionality
+                  </li>
+                  <li>
+                    <i class="fas fa-check-circle"></i> Built product categories
+                    and subcategories
+                  </li>
+                  <li>
+                    <i class="fas fa-check-circle"></i> Implemented product
+                    image uploading
+                  </li>
+                  <li>
+                    <i class="fas fa-check-circle"></i> Connected front-end
+                    interfaces with the database
+                  </li>
+                  <li>
+                    <i class="fas fa-check-circle"></i> Debugged system and
+                    database issues
+                  </li>
+                  <li>
+                    <i class="fas fa-check-circle"></i> Worked on deployment and
+                    hosting
+                  </li>
+                </ul>
+              </div>
+              <div class="panel-preview-card">
+                <div class="tech-stack-pills">
+                  <span class="tech-pill">PHP</span
+                  ><span class="tech-pill">MySQL</span
+                  ><span class="tech-pill">HTML</span
+                  ><span class="tech-pill">CSS</span
+                  ><span class="tech-pill">JavaScript</span
+                  ><span class="tech-pill">XAMPP</span
+                  ><span class="tech-pill">FileZilla</span>
+                </div>
+                <div class="code-snippet-box">
+                  <div class="code-header">
+                    <span class="dot red"></span><span class="dot yellow"></span
+                    ><span class="dot green"></span
+                    ><span class="title">client-system.log</span>
+                  </div>
+                  <pre><code>STATUS: <span class="s">PRACTICAL SYSTEM</span>
+ROLE: <span class="s">SYSTEM DEVELOPER</span>
+STACK: <span class="s">PHP + MYSQL</span>
+WORKFLOW: <span class="s">BUILD → DEBUG → DEPLOY</span></code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="projects-section">
+        <div class="container">
+          <div class="section-header center">
+            <span class="section-badge">FEATURED PROJECTS</span>
+            <h2 class="section-title">Things I've Built<span>.</span></h2>
+            <p class="section-desc">
+              Projects that helped me connect development, systems thinking,
+              databases, and interface design.
+            </p>
+          </div>
+          <div class="projects-grid">
+            <div class="project-card">
+              <div class="project-img-container">
+                <img
+                  src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1000&auto=format&fit=crop"
+                  alt="Inventory Management System"
+                  class="project-img"
+                />
+                <div class="project-overlay">
+                  <div class="project-overlay-content">
+                    <span class="overlay-tag">REAL CLIENT PROJECT</span>
+                    <p>Internal management and inventory system.</p>
+                    <button class="project-btn open-modal-btn" data-project="1">
+                      <span>View Details</span
+                      ><i class="fas fa-arrow-right"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="project-info">
+                <div class="project-header-row">
+                  <h3>Inventory / Management System</h3>
+                  <span class="project-type-badge">PHP + MySQL</span>
+                </div>
+                <p class="project-summary">
+                  A web-based internal system for products, categories,
+                  subcategories, image uploads, database management, and
+                  administrative workflows.
+                </p>
+                <div class="project-tags">
+                  <span>PHP</span><span>MySQL</span><span>JavaScript</span>
+                </div>
+              </div>
+            </div>
+            <div class="project-card">
+              <div class="project-img-container">
+                <img
+                  src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=1000&auto=format&fit=crop"
+                  alt="Coffee Shop POS System"
+                  class="project-img"
+                />
+                <div class="project-overlay">
+                  <div class="project-overlay-content">
+                    <span class="overlay-tag">DESKTOP SYSTEM</span>
+                    <p>Point-of-Sale workflow for a coffee shop concept.</p>
+                    <button class="project-btn open-modal-btn" data-project="2">
+                      <span>View Details</span
+                      ><i class="fas fa-arrow-right"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="project-info">
+                <div class="project-header-row">
+                  <h3>Coffee Shop POS System</h3>
+                  <span class="project-type-badge">Java</span>
+                </div>
+                <p class="project-summary">
+                  A POS concept connecting product management, transaction
+                  processing, UI, application logic, and database integration.
+                </p>
+                <div class="project-tags">
+                  <span>Java</span><span>MySQL</span><span>GUI</span>
+                </div>
+              </div>
+            </div>
+            <div class="project-card">
+              <div class="project-img-container">
+                <img
+                  src="https://images.unsplash.com/photo-1509228468518-180dd4864904?q=80&w=1000&auto=format&fit=crop"
+                  alt="Math Quiz Website"
+                  class="project-img"
+                />
+                <div class="project-overlay">
+                  <div class="project-overlay-content">
+                    <span class="overlay-tag">WEB PROJECT</span>
+                    <p>
+                      Interactive math practice through a responsive web
+                      interface.
+                    </p>
+                    <button class="project-btn open-modal-btn" data-project="3">
+                      <span>View Details</span
+                      ><i class="fas fa-arrow-right"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="project-info">
+                <div class="project-header-row">
+                  <h3>Math Quiz Website</h3>
+                  <span class="project-type-badge">HTML + JS</span>
+                </div>
+                <p class="project-summary">
+                  An interactive math quiz focused on questions, user
+                  interaction, logic-based functionality, and responsive
+                  presentation.
+                </p>
+                <div class="project-tags">
+                  <span>HTML</span><span>CSS</span><span>JavaScript</span>
+                </div>
+              </div>
+            </div>
+            <div class="project-card">
+              <div class="project-img-container">
+                <img
+                  src="https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=1000&auto=format&fit=crop"
+                  alt="Personal Portfolio"
+                  class="project-img"
+                />
+                <div class="project-overlay">
+                  <div class="project-overlay-content">
+                    <span class="overlay-tag">PERSONAL PROJECT</span>
+                    <p>
+                      An interactive portfolio for identity, work, and design
+                      exploration.
+                    </p>
+                    <button class="project-btn open-modal-btn" data-project="4">
+                      <span>View Details</span
+                      ><i class="fas fa-arrow-right"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="project-info">
+                <div class="project-header-row">
+                  <h3>Personal Portfolio</h3>
+                  <span class="project-type-badge">Figma + Web</span>
+                </div>
+                <p class="project-summary">
+                  A portfolio designed to show how I think, design, build, and
+                  present my work rather than simply acting as an online résumé.
+                </p>
+                <div class="project-tags">
+                  <span>Figma</span><span>HTML</span><span>CSS</span
+                  ><span>JavaScript</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="design" class="folder-section">
+        <div class="container">
+          <div class="section-header center">
+            <span class="section-badge">DESIGN EXPERIMENTS</span>
+            <h2 class="section-title">Exploring Interfaces<span>.</span></h2>
+            <p class="section-desc">
+              Design work that lets me experiment with interaction, composition,
+              and visual ideas.
+            </p>
+          </div>
+          <div class="overview-pillars">
+            <div class="pillar-card">
+              <div class="pillar-num">01</div>
+              <div class="pillar-icon"><i class="fas fa-folder-tree"></i></div>
+              <h4>Interactive Folder Interface</h4>
+              <p>
+                An interactive Figma concept exploring folder-based navigation,
+                components, interface states, and micro-interactions.
+              </p>
+            </div>
+            <div class="pillar-card">
+              <div class="pillar-num">02</div>
+              <div class="pillar-icon"><i class="fas fa-yin-yang"></i></div>
+              <h4>Wabi-Sabi Interface</h4>
+              <p>
+                A visual exploration inspired by finding beauty in imperfection
+                through intentionally imperfect layouts and interactions.
+              </p>
+            </div>
+            <div class="pillar-card">
+              <div class="pillar-num">03</div>
+              <div class="pillar-icon"><i class="fas fa-bezier-curve"></i></div>
+              <h4>Prototype Thinking</h4>
+              <p>
+                Using wireframes and interactive prototypes to understand the
+                experience before translating ideas into code.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="process" class="skills-section">
+        <div class="container">
+          <div class="section-header center">
+            <span class="section-badge">MY DEVELOPMENT PROCESS</span>
+            <h2 class="section-title">Build → Debug → Improve<span>.</span></h2>
+            <p class="section-desc">
+              A practical workflow I use to turn problems into working systems.
+            </p>
+          </div>
+          <div class="skills-grid">
+            <div class="skill-card">
+              <div class="skill-head">
+                <div class="skill-icon-box">
+                  <i class="fas fa-magnifying-glass"></i>
+                </div>
+                <div class="skill-title-group">
+                  <h3>01 — Understand</h3>
+                  <span class="skill-cat">Problem + Requirements</span>
+                </div>
+              </div>
+              <p class="project-summary">
+                I first try to understand the problem, requirements, and people
+                who will use the system.
+              </p>
+            </div>
+            <div class="skill-card">
+              <div class="skill-head">
+                <div class="skill-icon-box">
+                  <i class="fas fa-list-check"></i>
+                </div>
+                <div class="skill-title-group">
+                  <h3>02 — Plan</h3>
+                  <span class="skill-cat">Break It Down</span>
+                </div>
+              </div>
+              <p class="project-summary">
+                I break the problem into smaller components and determine what
+                needs to be designed and developed.
+              </p>
+            </div>
+            <div class="skill-card">
+              <div class="skill-head">
+                <div class="skill-icon-box"><i class="fab fa-figma"></i></div>
+                <div class="skill-title-group">
+                  <h3>03 — Design</h3>
+                  <span class="skill-cat">Structure + Interface</span>
+                </div>
+              </div>
+              <p class="project-summary">
+                I create the structure and interface, often using Figma to
+                visualize the idea before development.
+              </p>
+            </div>
+            <div class="skill-card">
+              <div class="skill-head">
+                <div class="skill-icon-box"><i class="fas fa-code"></i></div>
+                <div class="skill-title-group">
+                  <h3>04 — Build</h3>
+                  <span class="skill-cat">Make It Functional</span>
+                </div>
+              </div>
+              <p class="project-summary">
+                I turn the design and requirements into a functional system.
+              </p>
+            </div>
+            <div class="skill-card">
+              <div class="skill-head">
+                <div class="skill-icon-box"><i class="fas fa-bug"></i></div>
+                <div class="skill-title-group">
+                  <h3>05 — Debug</h3>
+                  <span class="skill-cat">Test + Fix</span>
+                </div>
+              </div>
+              <p class="project-summary">
+                I test the system, identify problems, investigate what caused
+                them, and fix them.
+              </p>
+            </div>
+            <div class="skill-card">
+              <div class="skill-head">
+                <div class="skill-icon-box">
+                  <i class="fas fa-arrow-up-right-dots"></i>
+                </div>
+                <div class="skill-title-group">
+                  <h3>06 — Improve</h3>
+                  <span class="skill-cat">Feedback + Iteration</span>
+                </div>
+              </div>
+              <p class="project-summary">
+                I refine the system based on testing, feedback, and what I learn
+                throughout the process.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="education" class="about-section">
+        <div class="container">
+          <div class="section-header center">
+            <span class="section-badge">EDUCATION & CREDENTIALS</span>
+            <h2 class="section-title">Learning & Growing<span>.</span></h2>
+          </div>
+          <div class="about-card">
+            <div class="panel-grid-2col">
+              <div class="panel-text">
+                <span class="panel-tag"
+                  >BACHELOR OF SCIENCE IN INFORMATION TECHNOLOGY</span
+                >
+                <h3>Bestlink College of the Philippines</h3>
+                <p>
+                  Currently pursuing a Bachelor of Science in Information
+                  Technology.
+                </p>
+                <ul class="check-list">
+                  <li><i class="fas fa-check-circle"></i> Web Development</li>
+                  <li><i class="fas fa-check-circle"></i> Database Systems</li>
+                  <li>
+                    <i class="fas fa-check-circle"></i> Data Structures and
+                    Algorithms
+                  </li>
+                  <li><i class="fas fa-check-circle"></i> Software Testing</li>
+                  <li><i class="fas fa-check-circle"></i> Networking</li>
+                  <li>
+                    <i class="fas fa-check-circle"></i> Integrative Programming
+                  </li>
+                  <li>
+                    <i class="fas fa-check-circle"></i> System Development
+                  </li>
+                  <li>
+                    <i class="fas fa-check-circle"></i> Human-Computer
+                    Interaction
+                  </li>
+                </ul>
+              </div>
+              <div class="panel-preview-card">
+                <span class="panel-tag">CERTIFICATIONS & CREDENTIALS</span>
+                <div
+                  class="cert-card"
+                  style="
+                    box-shadow: none;
+                    padding: 0;
+                    border: none;
+                    background: transparent;
+                  "
+                >
+                  <div class="cert-body">
+                    <span class="cert-issuer">CREDENTIAL 01</span>
+                    <h3 class="cert-title">
+                      NC II — Computer Systems Servicing
+                    </h3>
+                    <p class="cert-desc">
+                      Issuing organization and date to be added.
+                    </p>
+                    <span class="cert-issuer">CREDENTIAL 02</span>
+                    <h3 class="cert-title">Bookkeeping Certificate</h3>
+                    <p class="cert-desc">
+                      Issuing organization and date to be added.
+                    </p>
+                    <span class="cert-issuer">CREDENTIAL 03</span>
+                    <h3 class="cert-title">NC III Certificate</h3>
+                    <p class="cert-desc">
+                      Previously obtained; currently expired. Certification
+                      details to be added.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="learning" class="folder-section">
+        <div class="container">
+          <div class="section-header center">
+            <span class="section-badge">CURRENTLY LEARNING</span>
+            <h2 class="section-title">
+              Still Building My Toolkit<span>.</span>
+            </h2>
+          </div>
+          <div class="skill-tags" style="justify-content: center; gap: 12px">
+            <span class="tag">Improving PHP</span
+            ><span class="tag">Improving MySQL</span
+            ><span class="tag">Improving JavaScript</span
+            ><span class="tag">UI / UX Design</span
+            ><span class="tag">Interactive Design</span
+            ><span class="tag">Responsive Web Development</span
+            ><span class="tag">System Architecture</span
+            ><span class="tag">Development Practices</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="contact-section">
+        <div class="container">
+          <div class="section-header center">
+            <span class="section-badge">GET IN TOUCH</span>
+            <h2 class="section-title">Let's Build Something<span>.</span></h2>
+            <p class="section-desc">
+              Have a project, idea, or problem that could use a digital
+              solution? I'd love to hear about it.
+            </p>
+          </div>
+          <div class="contact-grid">
+            <div class="contact-info-card">
+              <h3 class="contact-card-title">Personal Approach</h3>
+              <p class="contact-card-sub">
+                I don't want to simply know how to use a technology. I want to
+                understand what I can create with it.
+              </p>
+              <div class="info-items-list">
+                <div class="info-item">
+                  <div class="info-icon">
+                    <i class="fas fa-location-dot"></i>
+                  </div>
+                  <div class="info-content">
+                    <span class="info-label">Location</span
+                    ><span class="info-val">Caloocan City, Philippines</span>
+                  </div>
+                </div>
+                <div class="info-item">
+                  <div class="info-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                  </div>
+                  <div class="info-content">
+                    <span class="info-label">Education</span
+                    ><span class="info-val"
+                      >BSIT — Bestlink College of the Philippines</span
+                    >
+                  </div>
+                </div>
+                <div class="info-item">
+                  <div class="info-icon"><i class="fas fa-code"></i></div>
+                  <div class="info-content">
+                    <span class="info-label">Focus</span
+                    ><span class="info-val">Web Development × UI Design</span>
+                  </div>
+                </div>
+              </div>
+              <div class="social-connect-box">
+                <h4>Social Channels & Repositories</h4>
+                <div class="social-links-row">
+                  <a href="#" class="social-btn" title="GitHub — add your link"
+                    ><i class="fab fa-github"></i></a
+                  ><a
+                    href="#"
+                    class="social-btn"
+                    title="LinkedIn — add your link"
+                    ><i class="fab fa-linkedin"></i></a
+                  ><a
+                    href="mailto:"
+                    class="social-btn"
+                    title="Email — add your email"
+                    ><i class="fas fa-paper-plane"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+            <div class="contact-form-card">
+              <form
+                class="contact-form"
+                id="contact-form"
+                action="https://formspree.io/f/mojlgyen"
+                method="POST"
+              >
+                <h3 class="form-title">Transmit Message</h3>
+                <div class="form-group">
+                  <input
+                    type="text"
+                    name="name"
+                    id="name"
+                    required
+                    placeholder=" "
+                  /><label for="name">Your Full Name</label
+                  ><span class="input-line"></span>
+                </div>
+                <div class="form-group">
+                  <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    required
+                    placeholder=" "
+                  /><label for="email">Your Email Address</label
+                  ><span class="input-line"></span>
+                </div>
+                <div class="form-group">
+                  <input
+                    type="text"
+                    name="subject"
+                    id="subject"
+                    placeholder=" "
+                  /><label for="subject">Subject / Project Type</label
+                  ><span class="input-line"></span>
+                </div>
+                <div class="form-group">
+                  <textarea
+                    name="message"
+                    id="message"
+                    rows="4"
+                    required
+                    placeholder=" "
+                  ></textarea
+                  ><label for="message">How can I help you?</label
+                  ><span class="input-line"></span>
+                </div>
+                <button type="submit" class="btn btn-primary submit-btn">
+                  <span class="btn-text">Transmit Message</span
+                  ><i class="fas fa-paper-plane"></i>
+                </button>
+                <div class="form-feedback" id="form-feedback"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div id="project-modal" class="modal-backdrop">
+      <div class="modal-dialog">
+        <button class="close-modal-btn" id="close-modal">&times;</button>
+        <div class="modal-grid">
+          <div class="modal-image-col">
+            <img src="" alt="Project Preview" id="modal-img" />
+          </div>
+          <div class="modal-info-col">
+            <span class="modal-badge" id="modal-badge">PROJECT OVERVIEW</span>
+            <h2 id="modal-title" class="modal-title">Project Title</h2>
+            <div class="modal-tags" id="modal-tags"></div>
+            <div class="modal-description">
+              <h3><i class="fas fa-bullseye"></i> The Challenge</h3>
+              <p id="modal-challenge"></p>
+              <h3><i class="fas fa-lightbulb"></i> What I Built</h3>
+              <p id="modal-solution"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="terminal-window minimized" id="terminal-window">
+      <div class="terminal-header">
+        <div class="t-btn red" id="t-close-btn" title="Minimize Terminal"></div>
+        <div class="t-btn yellow" id="t-min-btn" title="Toggle Size"></div>
+        <div class="t-btn green" id="t-max-btn" title="Clear Screen"></div>
+        <div class="t-title">
+          <i class="fas fa-terminal"></i> frances@portfolio:~
+        </div>
+      </div>
+      <div class="terminal-body" id="terminal-output">
+        <div class="t-line text-cyan">Portfolio initialized...</div>
+        <div class="t-line">Welcome to Frances Margarett's command shell.</div>
+        <div class="t-line text-muted">
+          Type '<span class="text-yellow">help</span>' for commands.
+        </div>
+      </div>
+      <div class="terminal-input-line">
+        <span class="t-prompt">frances@portfolio:~$</span
+        ><input
+          type="text"
+          id="terminal-input"
+          autocomplete="off"
+          placeholder="type command..."
+        />
+      </div>
+    </div>
+    <div id="toast-container" class="toast-container"></div>
+
+    <footer class="footer">
+      <div class="container footer-container">
+        <p>&copy; 2026 Frances Margarett. Build. Break. Learn. Improve.</p>
+        <a href="#home" class="back-to-top" title="Back to top"
+          ><i class="fas fa-chevron-up"></i
+        ></a>
+      </div>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>
