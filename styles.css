@@ -3165,41 +3165,433 @@ textarea {
 }
 
 /* ==========================================================================
-   TERMINAL — LIGHT MODE FIX
+   CERTIFICATE CARDS — WIDE LAYOUT
    ========================================================================== */
 
-[data-theme="light"] .terminal-window {
-  background: rgba(255, 255, 255, 0.96);
-  color: var(--text-main);
+/* Make the certification area use the full available width */
+.certification-preview {
+    width: 100%;
+    min-width: 0;
 }
 
-[data-theme="light"] .terminal-header {
-  background: rgba(241, 245, 249, 0.98);
+/* Two wide cards instead of narrow/tall cards */
+.certs-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
 }
 
-[data-theme="light"] .terminal-body {
-  color: var(--text-main);
+/* Make each card shorter */
+.cert-card {
+    min-width: 0;
+    min-height: 0;
+    height: auto;
+    padding: 20px;
 }
 
-[data-theme="light"] .terminal-input-line {
-  background: rgba(226, 232, 240, 0.9);
-  color: var(--text-main);
+/* Keep the content from becoming excessively tall */
+.cert-card .cert-body {
+    min-height: 0;
 }
 
-[data-theme="light"] #terminal-input {
-  color: #0f172a;
-  caret-color: #0284c7;
+.cert-card .cert-desc {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
-[data-theme="light"] #terminal-input::placeholder {
-  color: #64748b;
-  opacity: 1;
+.cert-card .cert-meta {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 12px 20px;
 }
 
-[data-theme="light"] .t-title {
-  color: #475569;
+.cert-card .cert-footer {
+    margin-top: 14px;
 }
 
-[data-theme="light"] .t-prompt {
-  color: #0284c7;
+/* Tablet */
+@media (max-width: 900px) {
+
+    .certs-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+
+    .certs-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .cert-card {
+        padding: 16px;
+    }
+
+}
+
+/* ==========================================================================
+   CERTIFICATE VIEWER
+   ========================================================================== */
+
+.certificate-viewer {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition:
+        opacity 0.25s ease,
+        visibility 0.25s ease;
+}
+
+.certificate-viewer.active {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.certificate-viewer-backdrop {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    background: rgba(0, 0, 0, 0.82);
+    backdrop-filter: blur(10px);
+}
+
+.certificate-viewer-content {
+    position: relative;
+    z-index: 1;
+    width: min(900px, 100%);
+    max-height: 92vh;
+    overflow-y: auto;
+    padding: 28px;
+    background: var(--bg-secondary, #0b1018);
+    border: 1px solid var(--border-glow, rgba(0, 242, 254, 0.35));
+    border-radius: 18px;
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.55),
+        0 0 40px rgba(0, 242, 254, 0.08);
+}
+
+.certificate-viewer-close {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border-glow, rgba(0, 242, 254, 0.35));
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.25);
+    color: inherit;
+    cursor: pointer;
+    z-index: 5;
+}
+
+.certificate-viewer-close:hover {
+    transform: rotate(90deg);
+}
+
+.certificate-viewer-header {
+    padding-right: 55px;
+    margin-bottom: 20px;
+}
+
+.certificate-viewer-badge {
+    display: inline-block;
+    margin-bottom: 8px;
+    color: var(--primary-purple, #a855f7);
+    font-family: var(--font-mono, monospace);
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+}
+
+.certificate-viewer-title {
+    margin: 0 0 6px;
+    font-size: clamp(1.3rem, 3vw, 2rem);
+}
+
+.certificate-viewer-issuer {
+    margin: 0;
+    color: var(--text-secondary, #94a3b8);
+}
+
+.certificate-viewer-image-wrap {
+    width: 100%;
+    overflow: hidden;
+    border: 1px solid var(--border-glass, rgba(255,255,255,0.1));
+    border-radius: 12px;
+    background: #05070a;
+}
+
+.certificate-viewer-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 60vh;
+    object-fit: contain;
+}
+
+.certificate-viewer-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 18px;
+}
+
+.certificate-viewer-info div {
+    padding: 13px 15px;
+    border: 1px solid var(--border-glass, rgba(255,255,255,0.1));
+    border-radius: 10px;
+}
+
+.certificate-viewer-info span {
+    display: block;
+    margin-bottom: 5px;
+    font-family: var(--font-mono, monospace);
+    font-size: 0.62rem;
+    color: var(--text-muted, #64748b);
+}
+
+.certificate-viewer-info strong {
+    display: block;
+    font-size: 0.8rem;
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 600px) {
+
+    .certificate-viewer {
+        padding: 12px;
+    }
+
+    .certificate-viewer-backdrop {
+        padding: 12px;
+    }
+
+    .certificate-viewer-content {
+        padding: 18px;
+        max-height: 95vh;
+    }
+
+    .certificate-viewer-image {
+        max-height: 55vh;
+    }
+
+    .certificate-viewer-info {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+/* ==========================================================================
+   COMPACT CERTIFICATE CARDS ON MOBILE
+   ========================================================================== */
+
+@media (max-width: 600px) {
+
+    .certs-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .cert-card {
+        padding: 12px;
+        border-radius: 12px;
+    }
+
+    /* Smaller top section */
+    .cert-card .cert-header {
+        margin-bottom: 7px;
+    }
+
+    .cert-card .cert-icon-badge {
+        width: 32px;
+        height: 32px;
+        font-size: 0.75rem;
+        border-radius: 8px;
+    }
+
+    .cert-card .cert-status-tag {
+        font-size: 0.52rem;
+        padding: 3px 6px;
+    }
+
+    /* Smaller certificate text */
+    .cert-card .cert-issuer {
+        font-size: 0.55rem;
+        margin-bottom: 2px;
+    }
+
+    .cert-card .cert-title {
+        font-size: 0.82rem;
+        line-height: 1.2;
+        margin-bottom: 4px;
+    }
+
+    .cert-card .cert-desc {
+        font-size: 0.65rem;
+        line-height: 1.35;
+
+        /* Only show one line */
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+
+        margin-bottom: 6px;
+    }
+
+    /* Date + ID on one line */
+    .cert-card .cert-meta {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 5px 12px;
+
+        font-size: 0.52rem;
+        line-height: 1.2;
+    }
+
+    .cert-card .cert-footer {
+        margin-top: 8px;
+        padding-top: 8px;
+    }
+
+    /* Smaller View Certificate button */
+    .cert-card .cert-view-btn {
+        width: 100%;
+        min-height: 32px;
+        padding: 6px 10px;
+        font-size: 0.62rem;
+        border-radius: 7px;
+    }
+
+    .cert-card .cert-view-btn i {
+        font-size: 0.58rem;
+    }
+
+    /* Smaller View All button */
+    .certs-view-all {
+        margin-top: 12px;
+    }
+
+    .certs-view-all .btn {
+        min-height: 38px;
+        padding: 8px 12px;
+        font-size: 0.68rem;
+    }
+}
+
+/* ==========================================================================
+   CV DOWNLOAD BUTTON
+   ========================================================================== */
+
+.cv-download-btn {
+    cursor: pointer;
+}
+
+.cv-download-btn i {
+    transition: transform 0.2s ease;
+}
+
+.cv-download-btn:hover i {
+    transform: translateY(2px);
+}
+
+@media (max-width: 600px) {
+
+    .contact-buttons {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .cv-download-btn {
+        width: 100%;
+    }
+
+}
+
+/* ==========================================================================
+   DOWNLOAD CV BUTTON
+   ========================================================================== */
+
+.cv-download-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    min-height: 46px;
+    padding: 0 18px;
+
+    border: 1px solid rgba(0, 242, 254, 0.35);
+    border-radius: 999px;
+
+    background: rgba(0, 242, 254, 0.04);
+
+    color: var(--text-primary);
+
+    text-decoration: none;
+
+    font-size: 0.82rem;
+    font-weight: 600;
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.cv-download-btn i {
+    color: var(--primary-cyan);
+    font-size: 0.9rem;
+}
+
+.cv-download-btn:hover {
+    transform: translateY(-2px);
+
+    border-color: var(--primary-cyan);
+
+    background: rgba(0, 242, 254, 0.1);
+
+    box-shadow:
+        0 0 20px rgba(0, 242, 254, 0.12);
+}
+
+.cv-download-btn:active {
+    transform: translateY(0);
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .cv-download-btn {
+        min-height: 42px;
+        padding: 0 15px;
+        font-size: 0.75rem;
+    }
+
 }

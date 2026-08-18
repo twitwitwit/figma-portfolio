@@ -3,37 +3,35 @@
    Web Developer × UI Designer
    ========================================================================== */
 
-document.addEventListener('DOMContentLoaded', () => {
-
+document.addEventListener("DOMContentLoaded", () => {
   /* --------------------------------------------------------------------------
      1. PRELOADER
      -------------------------------------------------------------------------- */
-  const loaderWrapper = document.getElementById('loader-wrapper');
+  const loaderWrapper = document.getElementById("loader-wrapper");
 
   if (loaderWrapper) {
     setTimeout(() => {
-      loaderWrapper.classList.add('loader-finish');
+      loaderWrapper.classList.add("loader-finish");
       initTypingEffect();
     }, 1500);
   } else {
     initTypingEffect();
   }
 
-
   /* --------------------------------------------------------------------------
      2. TYPING EFFECT
      -------------------------------------------------------------------------- */
   function initTypingEffect() {
-    const typeText = document.querySelector('.type-text');
+    const typeText = document.querySelector(".type-text");
 
     if (!typeText) return;
 
     const roles = [
-      'Web Developer',
-      'UI Designer',
-      'BSIT Student',
-      'PHP Developer',
-      'Problem Solver'
+      "Web Developer",
+      "UI Designer",
+      "BSIT Student",
+      "PHP Developer",
+      "Problem Solver",
     ];
 
     let roleIndex = 0;
@@ -70,20 +68,18 @@ document.addEventListener('DOMContentLoaded', () => {
     type();
   }
 
-
   /* --------------------------------------------------------------------------
      3. NAVIGATION
      -------------------------------------------------------------------------- */
-  const navbar = document.getElementById('navbar');
-  const scrollProgress = document.getElementById('scroll-progress');
+  const navbar = document.getElementById("navbar");
+  const scrollProgress = document.getElementById("scroll-progress");
 
-  window.addEventListener('scroll', () => {
-
+  window.addEventListener("scroll", () => {
     if (navbar) {
       if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
+        navbar.classList.add("scrolled");
       } else {
-        navbar.classList.remove('scrolled');
+        navbar.classList.remove("scrolled");
       }
     }
 
@@ -95,1798 +91,1567 @@ document.addEventListener('DOMContentLoaded', () => {
         document.documentElement.scrollHeight -
         document.documentElement.clientHeight;
 
-      const progress =
-        scrollHeight > 0
-          ? (scrollTop / scrollHeight) * 100
-          : 0;
+      const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
 
       scrollProgress.style.width = `${progress}%`;
     }
   });
 
-
   /* --------------------------------------------------------------------------
      4. MOBILE BURGER MENU
      -------------------------------------------------------------------------- */
-  const burger = document.getElementById('burger-menu');
-  const navList = document.querySelector('.nav-links');
+  const burger = document.getElementById("burger-menu");
+  const navList = document.querySelector(".nav-links");
 
   if (burger && navList) {
-
     const closeMobileNav = () => {
-      navList.classList.remove('nav-active');
-      burger.classList.remove('toggle');
+      navList.classList.remove("nav-active");
+      burger.classList.remove("toggle");
 
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     };
 
-    burger.addEventListener('click', () => {
+    burger.addEventListener("click", () => {
+      const isOpen = navList.classList.toggle("nav-active");
 
-      const isOpen =
-        navList.classList.toggle('nav-active');
+      burger.classList.toggle("toggle", isOpen);
 
-      burger.classList.toggle('toggle', isOpen);
-
-      document.body.style.overflow =
-        isOpen ? 'hidden' : '';
+      document.body.style.overflow = isOpen ? "hidden" : "";
     });
 
-    navList.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', closeMobileNav);
+    navList.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", closeMobileNav);
     });
 
-    window.addEventListener('resize', () => {
+    window.addEventListener("resize", () => {
       if (window.innerWidth > 768) {
         closeMobileNav();
       }
     });
   }
 
-
   /* --------------------------------------------------------------------------
      5. ACTIVE SECTION NAVIGATION
      -------------------------------------------------------------------------- */
-  const sections =
-    document.querySelectorAll('section[id]');
+  const sections = document.querySelectorAll("section[id]");
 
-  const navLinks =
-    document.querySelectorAll('.nav-links a');
+  const navLinks = document.querySelectorAll(".nav-links a");
 
-  if ('IntersectionObserver' in window) {
-
-    const sectionObserver =
-      new IntersectionObserver((entries) => {
-
-        entries.forEach(entry => {
-
+  if ("IntersectionObserver" in window) {
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
           if (entry.isIntersecting) {
+            const id = entry.target.getAttribute("id");
 
-            const id =
-              entry.target.getAttribute('id');
+            navLinks.forEach((link) => {
+              link.classList.remove("active");
 
-            navLinks.forEach(link => {
-
-              link.classList.remove('active');
-
-              if (
-                link.getAttribute('href') === `#${id}`
-              ) {
-                link.classList.add('active');
+              if (link.getAttribute("href") === `#${id}`) {
+                link.classList.add("active");
               }
-
             });
           }
-
         });
+      },
+      {
+        threshold: 0.3,
+      },
+    );
 
-      }, {
-        threshold: 0.3
-      });
-
-    sections.forEach(section => {
+    sections.forEach((section) => {
       sectionObserver.observe(section);
     });
   }
 
-
   /* --------------------------------------------------------------------------
      6. THEME TOGGLE
      -------------------------------------------------------------------------- */
-  const themeBtn =
-    document.getElementById('theme-btn');
+  const themeBtn = document.getElementById("theme-btn");
 
-  const html =
-    document.documentElement;
+  const html = document.documentElement;
 
   if (themeBtn) {
+    const themeIcon = themeBtn.querySelector("i");
 
-    const themeIcon =
-      themeBtn.querySelector('i');
+    const savedTheme = localStorage.getItem("theme") || "dark";
 
-    const savedTheme =
-      localStorage.getItem('theme') || 'dark';
-
-    html.setAttribute(
-      'data-theme',
-      savedTheme
-    );
+    html.setAttribute("data-theme", savedTheme);
 
     if (themeIcon) {
       themeIcon.className =
-        savedTheme === 'dark'
-          ? 'fas fa-moon'
-          : 'fas fa-sun';
+        savedTheme === "dark" ? "fas fa-moon" : "fas fa-sun";
     }
 
-    themeBtn.addEventListener('click', () => {
+    themeBtn.addEventListener("click", () => {
+      const currentTheme = html.getAttribute("data-theme");
 
-      const currentTheme =
-        html.getAttribute('data-theme');
+      const newTheme = currentTheme === "dark" ? "light" : "dark";
 
-      const newTheme =
-        currentTheme === 'dark'
-          ? 'light'
-          : 'dark';
+      html.setAttribute("data-theme", newTheme);
 
-      html.setAttribute(
-        'data-theme',
-        newTheme
-      );
-
-      localStorage.setItem(
-        'theme',
-        newTheme
-      );
+      localStorage.setItem("theme", newTheme);
 
       if (themeIcon) {
         themeIcon.className =
-          newTheme === 'dark'
-            ? 'fas fa-moon'
-            : 'fas fa-sun';
+          newTheme === "dark" ? "fas fa-moon" : "fas fa-sun";
       }
 
-      showToast(
-        `Switched to ${newTheme.toUpperCase()} theme`
-      );
+      showToast(`Switched to ${newTheme.toUpperCase()} theme`);
     });
   }
-
 
   /* --------------------------------------------------------------------------
      7. ID CARD 3D EFFECT
      -------------------------------------------------------------------------- */
-  const idCard3d =
-    document.getElementById('id-card-3d');
+  const idCard3d = document.getElementById("id-card-3d");
 
-  if (
-    idCard3d &&
-    window.matchMedia('(pointer: fine)').matches
-  ) {
+  if (idCard3d && window.matchMedia("(pointer: fine)").matches) {
+    window.addEventListener("mousemove", (e) => {
+      const rect = idCard3d.getBoundingClientRect();
 
-    window.addEventListener('mousemove', (e) => {
+      const centerX = rect.left + rect.width / 2;
 
-      const rect =
-        idCard3d.getBoundingClientRect();
+      const centerY = rect.top + rect.height / 2;
 
-      const centerX =
-        rect.left + rect.width / 2;
+      const mouseX = e.clientX - centerX;
 
-      const centerY =
-        rect.top + rect.height / 2;
+      const mouseY = e.clientY - centerY;
 
-      const mouseX =
-        e.clientX - centerX;
+      const rotateX = (-mouseY / 20).toFixed(2);
 
-      const mouseY =
-        e.clientY - centerY;
+      const rotateY = (mouseX / 20).toFixed(2);
 
-      const rotateX =
-        (-mouseY / 20).toFixed(2);
-
-      const rotateY =
-        (mouseX / 20).toFixed(2);
-
-      idCard3d.style.transform =
-        `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      idCard3d.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
     });
 
-    idCard3d.addEventListener('mouseleave', () => {
-
-      idCard3d.style.transform =
-        'rotateX(0deg) rotateY(0deg)';
+    idCard3d.addEventListener("mouseleave", () => {
+      idCard3d.style.transform = "rotateX(0deg) rotateY(0deg)";
     });
   }
-
 
   /* --------------------------------------------------------------------------
      8. CUSTOM CURSOR
      -------------------------------------------------------------------------- */
-  const cursorDot =
-    document.querySelector('.cursor-dot');
+  const cursorDot = document.querySelector(".cursor-dot");
 
-  const cursorOutline =
-    document.querySelector('.cursor-outline');
+  const cursorOutline = document.querySelector(".cursor-outline");
 
   if (
     cursorDot &&
     cursorOutline &&
-    window.matchMedia('(pointer: fine)').matches
+    window.matchMedia("(pointer: fine)").matches
   ) {
+    window.addEventListener("mousemove", (e) => {
+      cursorDot.style.left = `${e.clientX}px`;
 
-    window.addEventListener('mousemove', (e) => {
-
-      cursorDot.style.left =
-        `${e.clientX}px`;
-
-      cursorDot.style.top =
-        `${e.clientY}px`;
+      cursorDot.style.top = `${e.clientY}px`;
 
       cursorOutline.animate(
         {
           left: `${e.clientX}px`,
-          top: `${e.clientY}px`
+          top: `${e.clientY}px`,
         },
         {
           duration: 400,
-          fill: 'forwards'
-        }
+          fill: "forwards",
+        },
       );
     });
 
-    const interactiveElements =
-      document.querySelectorAll(
-        'a, button, .folder-tab, .skill-card, .project-card, .cert-card'
-      );
+    const interactiveElements = document.querySelectorAll(
+      "a, button, .folder-tab, .skill-card, .project-card, .cert-card",
+    );
 
-    interactiveElements.forEach(element => {
+    interactiveElements.forEach((element) => {
+      element.addEventListener("mouseenter", () => {
+        cursorOutline.classList.add("cursor-hover");
+      });
 
-      element.addEventListener(
-        'mouseenter',
-        () => {
-          cursorOutline.classList.add(
-            'cursor-hover'
-          );
-        }
-      );
-
-      element.addEventListener(
-        'mouseleave',
-        () => {
-          cursorOutline.classList.remove(
-            'cursor-hover'
-          );
-        }
-      );
+      element.addEventListener("mouseleave", () => {
+        cursorOutline.classList.remove("cursor-hover");
+      });
     });
   }
-
 
   /* --------------------------------------------------------------------------
      9. HERO PARTICLE CANVAS
      -------------------------------------------------------------------------- */
-  const canvas =
-    document.getElementById('hero-canvas');
+  const canvas = document.getElementById("hero-canvas");
 
   if (canvas) {
-
-    const ctx =
-      canvas.getContext('2d');
+    const ctx = canvas.getContext("2d");
 
     let particles = [];
 
     function resizeCanvas() {
-
-      const parent =
-        canvas.parentElement;
+      const parent = canvas.parentElement;
 
       if (!parent) return;
 
-      canvas.width =
-        parent.offsetWidth;
+      canvas.width = parent.offsetWidth;
 
-      canvas.height =
-        parent.offsetHeight;
+      canvas.height = parent.offsetHeight;
     }
 
     resizeCanvas();
 
-    window.addEventListener(
-      'resize',
-      resizeCanvas
-    );
-
+    window.addEventListener("resize", resizeCanvas);
 
     class Particle {
-
       constructor() {
+        this.x = Math.random() * canvas.width;
 
-        this.x =
-          Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
 
-        this.y =
-          Math.random() * canvas.height;
+        this.size = Math.random() * 2 + 1;
 
-        this.size =
-          Math.random() * 2 + 1;
+        this.speedX = (Math.random() - 0.5) * 0.5;
 
-        this.speedX =
-          (Math.random() - 0.5) * 0.5;
+        this.speedY = (Math.random() - 0.5) * 0.5;
 
-        this.speedY =
-          (Math.random() - 0.5) * 0.5;
-
-        this.opacity =
-          Math.random() * 0.5 + 0.2;
+        this.opacity = Math.random() * 0.5 + 0.2;
       }
 
       update() {
-
         this.x += this.speedX;
         this.y += this.speedY;
 
-        if (
-          this.x < 0 ||
-          this.x > canvas.width
-        ) {
+        if (this.x < 0 || this.x > canvas.width) {
           this.speedX *= -1;
         }
 
-        if (
-          this.y < 0 ||
-          this.y > canvas.height
-        ) {
+        if (this.y < 0 || this.y > canvas.height) {
           this.speedY *= -1;
         }
       }
 
       draw() {
-
-        ctx.fillStyle =
-          `rgba(0, 242, 254, ${this.opacity})`;
+        ctx.fillStyle = `rgba(0, 242, 254, ${this.opacity})`;
 
         ctx.beginPath();
 
-        ctx.arc(
-          this.x,
-          this.y,
-          this.size,
-          0,
-          Math.PI * 2
-        );
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
 
         ctx.fill();
       }
     }
 
-
     function initParticles() {
-
       particles = [];
 
-      /*
-       * Fewer particles on small screens
-       * for better mobile performance.
-       */
-      const divisor =
-        window.innerWidth <= 768
-          ? 45
-          : 25;
+      const divisor = window.innerWidth <= 768 ? 45 : 25;
 
-      const count =
-        Math.floor(
-          canvas.width / divisor
-        );
+      const count = Math.floor(canvas.width / divisor);
 
       for (let i = 0; i < count; i++) {
-        particles.push(
-          new Particle()
-        );
+        particles.push(new Particle());
       }
     }
 
     initParticles();
 
-    window.addEventListener(
-      'resize',
-      initParticles
-    );
-
+    window.addEventListener("resize", initParticles);
 
     function animateParticles() {
-
-      ctx.clearRect(
-        0,
-        0,
-        canvas.width,
-        canvas.height
-      );
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       particles.forEach((particle, index) => {
-
         particle.update();
         particle.draw();
 
-        /*
-         * Reduce connection calculations
-         * on mobile devices.
-         */
-        const connectionDistance =
-          window.innerWidth <= 768
-            ? 90
-            : 120;
+        const connectionDistance = window.innerWidth <= 768 ? 90 : 120;
 
-        for (
-          let j = index + 1;
-          j < particles.length;
-          j++
-        ) {
+        for (let j = index + 1; j < particles.length; j++) {
+          const second = particles[j];
 
-          const second =
-            particles[j];
+          const dx = particle.x - second.x;
 
-          const dx =
-            particle.x - second.x;
+          const dy = particle.y - second.y;
 
-          const dy =
-            particle.y - second.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
 
-          const distance =
-            Math.sqrt(
-              dx * dx + dy * dy
-            );
-
-          if (
-            distance <
-            connectionDistance
-          ) {
-
-            ctx.strokeStyle =
-              `rgba(0, 242, 254, ${
-                0.15 *
-                (1 - distance / connectionDistance)
-              })`;
+          if (distance < connectionDistance) {
+            ctx.strokeStyle = `rgba(0, 242, 254, ${
+              0.15 * (1 - distance / connectionDistance)
+            })`;
 
             ctx.lineWidth = 0.5;
 
             ctx.beginPath();
 
-            ctx.moveTo(
-              particle.x,
-              particle.y
-            );
+            ctx.moveTo(particle.x, particle.y);
 
-            ctx.lineTo(
-              second.x,
-              second.y
-            );
+            ctx.lineTo(second.x, second.y);
 
             ctx.stroke();
           }
         }
       });
 
-      requestAnimationFrame(
-        animateParticles
-      );
+      requestAnimationFrame(animateParticles);
     }
 
     animateParticles();
   }
 
-
   /* --------------------------------------------------------------------------
      10. INTERACTIVE FOLDER TABS
      -------------------------------------------------------------------------- */
-  const folderTabs =
-    document.querySelectorAll(
-      '.folder-tab'
-    );
+  const folderTabs = document.querySelectorAll(".folder-tab");
 
-  const tabPanels =
-    document.querySelectorAll(
-      '.tab-panel'
-    );
+  const tabPanels = document.querySelectorAll(".tab-panel");
 
-  folderTabs.forEach(tab => {
+  folderTabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      const targetId = tab.getAttribute("data-target");
 
-    tab.addEventListener('click', () => {
-
-      const targetId =
-        tab.getAttribute(
-          'data-target'
-        );
-
-      folderTabs.forEach(item => {
-        item.classList.remove(
-          'active'
-        );
+      folderTabs.forEach((item) => {
+        item.classList.remove("active");
       });
 
-      tabPanels.forEach(panel => {
-        panel.classList.remove(
-          'active'
-        );
+      tabPanels.forEach((panel) => {
+        panel.classList.remove("active");
       });
 
-      tab.classList.add('active');
+      tab.classList.add("active");
 
-      const targetPanel =
-        document.getElementById(
-          targetId
-        );
+      const targetPanel = document.getElementById(targetId);
 
       if (targetPanel) {
-        targetPanel.classList.add(
-          'active'
-        );
+        targetPanel.classList.add("active");
       }
     });
   });
-
 
   /* --------------------------------------------------------------------------
      11. SKILL BAR ANIMATION
      -------------------------------------------------------------------------- */
-  const skillCards =
-    document.querySelectorAll(
-      '.skill-card'
+  const skillCards = document.querySelectorAll(".skill-card");
+
+  if ("IntersectionObserver" in window) {
+    const skillObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            return;
+          }
+
+          const card = entry.target;
+
+          const fill = card.querySelector(".progress-bar-fill");
+
+          const percent = card.querySelector(".skill-percent");
+
+          if (!fill || !percent) {
+            return;
+          }
+
+          const targetWidth = fill.getAttribute("data-width");
+
+          const targetNumber =
+            parseInt(percent.getAttribute("data-target")) || 0;
+
+          fill.style.width = targetWidth;
+
+          let count = 0;
+
+          const duration = 1000;
+
+          const interval = Math.max(10, duration / targetNumber);
+
+          const counter = setInterval(() => {
+            count++;
+
+            percent.textContent = `${count}%`;
+
+            if (count >= targetNumber) {
+              clearInterval(counter);
+            }
+          }, interval);
+
+          skillObserver.unobserve(card);
+        });
+      },
+      {
+        threshold: 0.4,
+      },
     );
 
-  if ('IntersectionObserver' in window) {
-
-    const skillObserver =
-      new IntersectionObserver(
-        (entries) => {
-
-          entries.forEach(entry => {
-
-            if (!entry.isIntersecting) {
-              return;
-            }
-
-            const card =
-              entry.target;
-
-            const fill =
-              card.querySelector(
-                '.progress-bar-fill'
-              );
-
-            const percent =
-              card.querySelector(
-                '.skill-percent'
-              );
-
-            if (!fill || !percent) {
-              return;
-            }
-
-            const targetWidth =
-              fill.getAttribute(
-                'data-width'
-              );
-
-            const targetNumber =
-              parseInt(
-                percent.getAttribute(
-                  'data-target'
-                )
-              ) || 0;
-
-            fill.style.width =
-              targetWidth;
-
-            let count = 0;
-
-            const duration = 1000;
-
-            const interval =
-              Math.max(
-                10,
-                duration / targetNumber
-              );
-
-            const counter =
-              setInterval(() => {
-
-                count++;
-
-                percent.textContent =
-                  `${count}%`;
-
-                if (
-                  count >= targetNumber
-                ) {
-                  clearInterval(
-                    counter
-                  );
-                }
-
-              }, interval);
-
-            skillObserver.unobserve(
-              card
-            );
-          });
-
-        },
-        {
-          threshold: 0.4
-        }
-      );
-
-    skillCards.forEach(card => {
+    skillCards.forEach((card) => {
       skillObserver.observe(card);
     });
   }
 
-
   /* --------------------------------------------------------------------------
-     12. PROJECT MODAL
+     11. PROJECTS
      -------------------------------------------------------------------------- */
-  const projectModal =
-    document.getElementById(
-      'project-modal'
-    );
 
-  const closeModalBtn =
-    document.getElementById(
-      'close-modal'
-    );
+  const projectsGrid = document.getElementById("projects-grid");
 
-  const openModalBtns =
-    document.querySelectorAll(
-      '.open-modal-btn'
-    );
+  const viewAllProjectsBtn = document.getElementById("view-all-projects");
 
+  const projectModal = document.getElementById("project-modal");
+
+  const closeProjectModalBtn = document.getElementById("close-project-modal");
 
   const projectData = {
+    1: {
+      title: "eAssist PH",
 
-    '1': {
-      title: 'Inventory / Management System',
+      badge: "WEB APPLICATION",
 
-      badge: 'REAL CLIENT PROJECT',
+      img: "images/eassist-ph.png",
 
-      img: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1000&auto=format&fit=crop',
-
-      tags: [
-        'PHP',
-        'MySQL',
-        'HTML',
-        'CSS',
-        'JavaScript',
-        'CRUD'
-      ],
+      tags: ["PHP", "MySQL", "HTML", "CSS", "JavaScript"],
 
       challenge:
-        'The client needed a centralized digital system for managing products and related information while reducing manual management.',
+        "People often have difficulty finding reliable emergency hotline information and understanding the requirements and procedures for important documents.",
 
       solution:
-        'Developed web-based functionality for product management, categories, subcategories, image uploads, database operations, and administrative workflows.'
+        "Developed eAssist PH as a centralized information platform containing Philippine emergency hotlines, document requirements, and step-by-step guides.",
     },
 
+    2: {
+      title: "eResponde",
 
-    '2': {
-      title: 'Coffee Shop POS System',
+      badge: "WEB APPLICATION",
 
-      badge: 'JAVA APPLICATION',
+      img: "images/eresponde.png",
 
-      img: 'https://images.unsplash.com/photo-1445116572660-236099ec97a0?q=80&w=1000&auto=format&fit=crop',
-
-      tags: [
-        'Java',
-        'MySQL',
-        'GUI',
-        'Database'
-      ],
+      tags: ["PHP", "MySQL", "HTML", "CSS", "JavaScript"],
 
       challenge:
-        'A coffee shop concept needed a system capable of connecting transactions, product information, user interaction, and database operations.',
+        "People need a fast and accessible way to report crimes, fires, and other emergencies when immediate assistance is needed.",
 
       solution:
-        'Created a Point-of-Sale concept that combines a graphical user interface with application logic and MySQL database integration.'
+        "Developed eResponde as a web-based emergency reporting platform where users can submit reports for crimes, fires, and emergency assistance.",
     },
 
+    3: {
+      title: "Sari App",
 
-    '3': {
-      title: 'Math Quiz Website',
+      badge: "MOBILE APPLICATION",
 
-      badge: 'WEB PROJECT',
+      img: "images/sari-app.jpg",
 
-      img: 'https://images.unsplash.com/photo-1509228468518-180dd4864904?q=80&w=1000&auto=format&fit=crop',
-
-      tags: [
-        'HTML',
-        'CSS',
-        'JavaScript',
-        'Responsive'
-      ],
+      tags: ["Java", "Mobile", "Barcode", "Inventory", "Database"],
 
       challenge:
-        'Users needed an engaging and simple way to practice mathematical skills through an interactive web interface.',
+        "Sari-sari store owners often manage product prices, inventory, and expiration dates manually.",
 
       solution:
-        'Built a responsive quiz website with interactive questions, user interaction, and JavaScript-based logic.'
+        "Created a mobile application that scans product barcodes, displays purchase and selling prices, manages inventory, and helps monitor product expiration dates.",
     },
 
+    4: {
+      title: "eLibrary",
 
-    '4': {
-      title: 'Personal Portfolio',
+      badge: "WEB APPLICATION",
 
-      badge: 'UI / UX + WEB',
+      img: "images/elibrary.jpg",
 
-      img: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?q=80&w=1000&auto=format&fit=crop',
-
-      tags: [
-        'Figma',
-        'HTML',
-        'CSS',
-        'JavaScript',
-        'Responsive Design'
-      ],
+      tags: ["PHP", "MySQL", "HTML", "CSS", "JavaScript"],
 
       challenge:
-        'A traditional résumé does not fully communicate how a developer thinks, designs, and builds digital experiences.',
+        "A library needs an organized digital system for managing books, users, and library records.",
 
       solution:
-        'Designed an interactive portfolio focused on personal branding, project presentation, responsive design, and visual storytelling.'
+        "Developed a digital library management system for organizing library resources and managing common borrowing and record-keeping workflows.",
     },
 
+    5: {
+      title: "Wedding Invitation & RSVP Generator",
 
-    '5': {
-      title: 'Interactive Folder Interface',
+      badge: "WEB APPLICATION",
 
-      badge: 'FIGMA DESIGN EXPERIMENT',
+      img: "images/wedding-invitation.jpg",
 
-      img: 'https://images.unsplash.com/photo-1558655146-9f40138edfeb?q=80&w=1000&auto=format&fit=crop',
-
-      tags: [
-        'Figma',
-        'Components',
-        'Prototype',
-        'Interaction Design'
-      ],
+      tags: ["HTML", "CSS", "JavaScript", "RSVP", "Responsive Design"],
 
       challenge:
-        'Explore a more engaging way to organize information and navigation inside a digital interface.',
+        "Event organizers need an easy way to create digital invitations while keeping track of the people they invited and their RSVP responses.",
 
       solution:
-        'Created a folder-based interface concept using Figma components, interactive states, navigation, and micro-interactions.'
+        "Designed a wedding invitation generator that allows creators to build digital invitations and track RSVP responses from invited guests.",
     },
 
+    6: {
+      title: "Wabi-Sabi Interface",
 
-    '6': {
-      title: 'Wabi-Sabi Interface',
+      badge: "DESIGN EXPERIMENT",
 
-      badge: 'DESIGN EXPERIMENT',
-
-      img: 'https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?q=80&w=1000&auto=format&fit=crop',
+      img: "images/wabi-sabi.jpg",
 
       tags: [
-        'Figma',
-        'UI Design',
-        'Visual Experimentation',
-        'Interaction Design'
+        "Figma",
+        "UI Design",
+        "Visual Experimentation",
+        "Interaction Design",
       ],
 
       challenge:
-        'Explore an interface philosophy that intentionally moves away from perfect symmetry and rigid visual structure.',
+        "Explore an interface philosophy that intentionally moves away from perfect symmetry and rigid visual structure.",
 
       solution:
-        'Designed an experimental interface inspired by wabi-sabi, using imperfect layouts and creative visual elements to explore alternative interaction patterns.'
-    }
+        "Designed an experimental interface inspired by wabi-sabi, using imperfect layouts and creative visual elements to explore alternative interaction patterns.",
+    },
   };
 
+  let showingAllProjects = false;
 
-  openModalBtns.forEach(button => {
+  function renderProjects() {
+    if (!projectsGrid) {
+      return;
+    }
 
-    button.addEventListener(
-      'click',
-      () => {
+    const allProjects = Object.entries(projectData);
 
-        const projectId =
-          button.getAttribute(
-            'data-project'
-          );
+    const visibleProjects = showingAllProjects
+      ? allProjects
+      : allProjects.slice(0, 3);
 
-        const data =
-          projectData[projectId];
+    projectsGrid.innerHTML = "";
 
-        if (
-          !data ||
-          !projectModal
-        ) {
-          return;
-        }
+    visibleProjects.forEach(([id, project]) => {
+      const card = document.createElement("article");
 
-        const title =
-          document.getElementById(
-            'modal-title'
-          );
+      card.className = "project-card";
 
-        const badge =
-          document.getElementById(
-            'modal-badge'
-          );
+      card.innerHTML = `
 
-        const image =
-          document.getElementById(
-            'modal-img'
-          );
+          <div class="project-img-container">
 
-        const challenge =
-          document.getElementById(
-            'modal-challenge'
-          );
-
-        const solution =
-          document.getElementById(
-            'modal-solution'
-          );
-
-        if (title) {
-          title.textContent =
-            data.title;
-        }
-
-        if (badge) {
-          badge.textContent =
-            data.badge;
-        }
-
-        if (image) {
-          image.src =
-            data.img;
-        }
-
-        if (challenge) {
-          challenge.textContent =
-            data.challenge;
-        }
-
-        if (solution) {
-          solution.textContent =
-            data.solution;
-        }
+            <img
+              src="${project.img}"
+              alt="${project.title}"
+              class="project-img"
+            >
 
 
-        const tagsContainer =
-          document.getElementById(
-            'modal-tags'
-          );
+            <div class="project-overlay">
 
-        if (tagsContainer) {
+              <div class="project-overlay-content">
 
-          tagsContainer.innerHTML = '';
-
-          data.tags.forEach(tag => {
-
-            const span =
-              document.createElement(
-                'span'
-              );
-
-            span.textContent =
-              tag;
-
-            tagsContainer.appendChild(
-              span
-            );
-          });
-        }
-
-        projectModal.classList.add(
-          'active'
-        );
-
-        document.body.style.overflow =
-          'hidden';
-      }
-    );
-  });
+                <span class="overlay-tag">
+                  ${project.badge}
+                </span>
 
 
-  if (
-    closeModalBtn &&
-    projectModal
-  ) {
-
-    closeModalBtn.addEventListener(
-      'click',
-      () => {
-
-        projectModal.classList.remove(
-          'active'
-        );
-
-        document.body.style.overflow =
-          '';
-      }
-    );
+                <p>
+                  ${project.challenge}
+                </p>
 
 
-    projectModal.addEventListener(
-      'click',
-      (e) => {
+                <button
+                  class="project-btn open-modal-btn"
+                  data-project="${id}"
+                  type="button"
+                >
 
-        if (
-          e.target === projectModal
-        ) {
+                  View Project
 
-          projectModal.classList.remove(
-            'active'
-          );
+                  <i class="fas fa-arrow-right"></i>
 
-          document.body.style.overflow =
-            '';
-        }
-      }
-    );
+                </button>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="project-info">
+
+            <div class="project-header-row">
+
+              <h3>
+                ${project.title}
+              </h3>
+
+
+              <span class="project-type-badge">
+
+                ${project.badge}
+
+              </span>
+
+            </div>
+
+
+            <p class="project-summary">
+
+              ${project.solution}
+
+            </p>
+
+
+            <div class="project-tags">
+
+              ${project.tags.map((tag) => `<span>${tag}</span>`).join("")}
+
+            </div>
+
+          </div>
+
+        `;
+
+      projectsGrid.appendChild(card);
+    });
+
+    if (viewAllProjectsBtn) {
+      viewAllProjectsBtn.innerHTML = showingAllProjects
+        ? `
+              Show Featured Projects
+
+              <i class="fas fa-chevron-up"></i>
+            `
+        : `
+              View All Projects
+
+              <i class="fas fa-arrow-right"></i>
+            `;
+    }
   }
 
+  renderProjects();
+
+  if (viewAllProjectsBtn) {
+    viewAllProjectsBtn.addEventListener("click", () => {
+      showingAllProjects = !showingAllProjects;
+
+      renderProjects();
+    });
+  }
 
   /* --------------------------------------------------------------------------
-     13. CERTIFICATE FILTER
+     PROJECT MODAL
      -------------------------------------------------------------------------- */
-  const certFilterBtns =
-    document.querySelectorAll(
-      '.cert-filter-btn'
-    );
 
-  const certCards =
-    document.querySelectorAll(
-      '.cert-card'
-    );
+  if (projectsGrid && projectModal) {
+    projectsGrid.addEventListener("click", (event) => {
+      const button = event.target.closest(".open-modal-btn");
 
-  certFilterBtns.forEach(button => {
-
-    button.addEventListener(
-      'click',
-      () => {
-
-        const filter =
-          button.getAttribute(
-            'data-filter'
-          );
-
-        certFilterBtns.forEach(btn => {
-          btn.classList.remove(
-            'active'
-          );
-        });
-
-        button.classList.add(
-          'active'
-        );
-
-
-        certCards.forEach(card => {
-
-          const category =
-            card.getAttribute(
-              'data-category'
-            );
-
-          if (
-            filter === 'all' ||
-            category === filter
-          ) {
-
-            card.style.display =
-              'flex';
-
-            card.style.animation =
-              'fadeIn 0.4s ease forwards';
-
-          } else {
-
-            card.style.display =
-              'none';
-          }
-        });
+      if (!button) {
+        return;
       }
-    );
-  });
 
+      const projectId = button.getAttribute("data-project");
+
+      const project = projectData[projectId];
+
+      if (!project) {
+        return;
+      }
+
+      const title = document.getElementById("modal-title");
+
+      const badge = document.getElementById("modal-badge");
+
+      const image = document.getElementById("modal-img");
+
+      const challenge = document.getElementById("modal-challenge");
+
+      const solution = document.getElementById("modal-solution");
+
+      const tags = document.getElementById("modal-tags");
+
+      if (title) {
+        title.textContent = project.title;
+      }
+
+      if (badge) {
+        badge.textContent = project.badge;
+      }
+
+      if (image) {
+        image.src = project.img;
+
+        image.alt = project.title;
+      }
+
+      if (challenge) {
+        challenge.textContent = project.challenge;
+      }
+
+      if (solution) {
+        solution.textContent = project.solution;
+      }
+
+      if (tags) {
+        tags.innerHTML = project.tags
+          .map((tag) => `<span>${tag}</span>`)
+          .join("");
+      }
+
+      projectModal.classList.add("active");
+
+      document.body.style.overflow = "hidden";
+    });
+  }
+
+  function closeProjectModal() {
+    if (!projectModal) {
+      return;
+    }
+
+    projectModal.classList.remove("active");
+
+    document.body.style.overflow = "";
+  }
+
+  if (closeProjectModalBtn) {
+    closeProjectModalBtn.addEventListener("click", closeProjectModal);
+  }
+
+  if (projectModal) {
+    projectModal.addEventListener("click", (event) => {
+      if (event.target === projectModal) {
+        closeProjectModal();
+      }
+    });
+  }
 
   /* --------------------------------------------------------------------------
-     14. CERTIFICATE MODAL
+     12. CERTIFICATE FILTER & PREVIEW MODAL LOGIC
      -------------------------------------------------------------------------- */
-  const certModal =
-    document.getElementById(
-      'cert-modal'
-    );
 
-  const closeCertModalBtn =
-    document.getElementById(
-      'close-cert-modal'
-    );
+  const certModal = document.getElementById("cert-modal");
 
-  const certOkBtn =
-    document.getElementById(
-      'cert-modal-ok'
-    );
+  const closeCertModalBtn = document.getElementById("close-cert-modal");
 
-  const certViewBtns =
-    document.querySelectorAll(
-      '.cert-view-btn'
-    );
+  const certOkBtn = document.getElementById("cert-modal-ok");
 
+  const certsGrid = document.getElementById("certs-grid");
+
+  const viewAllCertsBtn = document.getElementById("education-cert-btn");
+
+  const certCountBadge = document.getElementById("cert-count-badge");
 
   const certData = {
+    1: {
+      title: "Certificate of Participation — From Idea to App",
 
-    '1': {
-      title:
-        'NC II — Computer Systems Servicing',
+      category: "professional",
 
-      issuer:
-        '[INSERT ISSUING ORGANIZATION]',
+      issuer: "NCBA - ISOOC COUNCIL",
 
-      date:
-        '[INSERT DATE]',
+      date: "September 21, 2025",
 
-      id:
-        'CSS-NCII'
+      id: "CERT_01",
+
+      image: "images/certificates/idea_to_app.png",
+
+      description:
+        "FROM IDEA TO APP: DEMYSTIFYING WEB AND DIGITAL MARKETING",
     },
 
-    '2': {
-      title:
-        'Bookkeeping Certificate',
+    2: {
+      title: "Certificate of Recognition — 1st Place Web-Based Math Quiz Game",
 
-      issuer:
-        '[INSERT ISSUING ORGANIZATION]',
+      category: "achievement",
 
-      date:
-        '[INSERT DATE]',
+      issuer: "Bestlink College of the Philippines",
 
-      id:
-        'BOOKKEEPING'
+      date: "March 25, 2026",
+
+      id: "MATH-QUIZ",
+
+      image: "images/certificates/quiz_cert.png",
+
+      description:
+        "Certificate of Recognition for achieving First Place in the Web-Based Math Quiz Game Project with an average of 93.8.",
     },
 
-    '3': {
-      title:
-        'NC III Certificate',
+    3: {
+      title: "Certificate of Participation — CHAINQUEST: Blockchain Development Code Camp",
 
-      issuer:
-        '[INSERT CERTIFICATION DETAILS]',
+      category: "technical",
 
-      date:
-        'Previously obtained — currently expired',
+      issuer: "Bestlink College of the Philippines — College of Computer Studies",
 
-      id:
-        'NCIII'
-    }
+      date: "July 29, 2025",
+
+      id: "CHAINQUEST-2025",
+
+      image: "images/certificates/chainquest.jpg",
+
+      description: "Certificate of participation in CHAINQUEST: Blockchain Development Code Camp, organized by the College of Computer Studies in partnership with Web3 Bulacan.",
+    },
+
+    4: {
+      title: "Your Fourth Certificate",
+
+      category: "professional",
+
+      issuer: "[INSERT ISSUING ORGANIZATION]",
+
+      date: "[INSERT DATE]",
+
+      id: "CERT-004",
+
+      image: "images/certificates/certificate-4.jpg",
+
+      description: "Description of your fourth certification.",
+    },
   };
 
+  let showingAllCerts = false;
 
-  certViewBtns.forEach(button => {
+  /* --------------------------------------------------------------------------
+     RENDER CERTIFICATES
+     -------------------------------------------------------------------------- */
 
-    button.addEventListener(
-      'click',
-      () => {
+  function renderCertificates() {
+    if (!certsGrid) {
+      return;
+    }
 
-        const certId =
-          button.getAttribute(
-            'data-cert'
-          );
+    const allCertificates = Object.entries(certData);
 
-        const data =
-          certData[certId];
+    const visibleCertificates = showingAllCerts
+      ? allCertificates
+      : allCertificates.slice(0, 3);
 
-        if (
-          !data ||
-          !certModal
-        ) {
-          return;
-        }
+    certsGrid.innerHTML = "";
 
+    visibleCertificates.forEach(([id, cert]) => {
+      const card = document.createElement("article");
 
-        const title =
-          document.getElementById(
-            'cert-modal-title'
-          );
+      card.className = "cert-card";
 
-        const issuer =
-          document.getElementById(
-            'cert-modal-issuer'
-          );
+      card.setAttribute("data-category", cert.category);
 
-        const date =
-          document.getElementById(
-            'cert-modal-date'
-          );
+      card.innerHTML = `
 
-        const id =
-          document.getElementById(
-            'cert-modal-id'
-          );
+          <div class="cert-header">
+
+            <div class="cert-icon-badge">
+
+              <i class="fas fa-certificate"></i>
+
+            </div>
 
 
-        if (title) {
-          title.textContent =
-            data.title;
-        }
+            <span class="cert-status-tag verified">
 
-        if (issuer) {
-          issuer.textContent =
-            data.issuer;
-        }
+              <i class="fas fa-circle-check"></i>
 
-        if (date) {
-          date.textContent =
-            data.date;
-        }
+              Credential
 
-        if (id) {
-          id.textContent =
-            data.id;
-        }
+            </span>
+
+          </div>
 
 
-        certModal.classList.add(
-          'active'
-        );
+          <div class="cert-body">
 
-        document.body.style.overflow =
-          'hidden';
+            <span class="cert-issuer">
+
+              ${cert.issuer}
+
+            </span>
+
+
+            <h3 class="cert-title">
+
+              ${cert.title}
+
+            </h3>
+
+
+            <p class="cert-desc">
+
+              ${cert.description}
+
+            </p>
+
+
+            <div class="cert-meta">
+
+              <span>
+
+                <i class="fas fa-calendar"></i>
+
+                ${cert.date}
+
+              </span>
+
+
+              <span>
+
+                <i class="fas fa-fingerprint"></i>
+
+                ${cert.id}
+
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <div class="cert-footer">
+
+            <button
+              class="cert-view-btn"
+              data-cert="${id}"
+              type="button"
+            >
+
+              <i class="fas fa-eye"></i>
+
+              View Certificate
+
+            </button>
+
+          </div>
+
+        `;
+
+      certsGrid.appendChild(card);
+    });
+
+    /* ------------------------------------------------------------------------
+       UPDATE CERTIFICATE COUNT
+       ------------------------------------------------------------------------ */
+
+    if (certCountBadge) {
+      certCountBadge.textContent = `${allCertificates.length} ${
+        allCertificates.length === 1 ? "CERT" : "CERTS"
+      }`;
+    }
+
+    /* ------------------------------------------------------------------------
+       UPDATE VIEW ALL BUTTON
+       ------------------------------------------------------------------------ */
+
+    if (viewAllCertsBtn) {
+      viewAllCertsBtn.disabled = false;
+
+      viewAllCertsBtn.classList.remove("is-disabled");
+
+      if (showingAllCerts) {
+        viewAllCertsBtn.innerHTML = `
+
+          Show Featured Certifications
+
+          <i class="fas fa-chevron-up"></i>
+
+        `;
+      } else {
+        viewAllCertsBtn.innerHTML = `
+
+          View All Certifications
+
+          <i class="fas fa-arrow-right"></i>
+
+        `;
       }
-    );
+    }
+  }
+
+  renderCertificates();
+
+  /* --------------------------------------------------------------------------
+     VIEW ALL CERTIFICATIONS
+     -------------------------------------------------------------------------- */
+
+  if (viewAllCertsBtn) {
+    viewAllCertsBtn.addEventListener("click", () => {
+      showingAllCerts = !showingAllCerts;
+
+      renderCertificates();
+    });
+  }
+
+  /* --------------------------------------------------------------------------
+     CERTIFICATE FILTER
+     -------------------------------------------------------------------------- */
+
+  const certFilterBtns = document.querySelectorAll(".cert-filter-btn");
+
+  certFilterBtns.forEach((button) => {
+    button.addEventListener("click", () => {
+      const filter = button.getAttribute("data-filter");
+
+      certFilterBtns.forEach((btn) => {
+        btn.classList.remove("active");
+      });
+
+      button.classList.add("active");
+
+      const certCards = document.querySelectorAll(".cert-card");
+
+      certCards.forEach((card) => {
+        const category = card.getAttribute("data-category");
+
+        if (filter === "all" || category === filter) {
+          card.style.display = "flex";
+
+          card.style.animation = "fadeIn 0.4s ease forwards";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    });
   });
 
+  /* --------------------------------------------------------------------------
+   CERTIFICATE VIEWER
+   -------------------------------------------------------------------------- */
 
-  function closeCertificateModal() {
+  /*
+   * Create the certificate viewer automatically.
+   * This means you do NOT need to change the HTML modal.
+   */
 
-    if (!certModal) return;
+  let certificateViewer = document.getElementById("certificate-viewer");
 
-    certModal.classList.remove(
-      'active'
-    );
+  /* --------------------------------------------------------------------------
+   CREATE VIEWER
+   -------------------------------------------------------------------------- */
 
-    document.body.style.overflow =
-      '';
+  if (!certificateViewer) {
+    certificateViewer = document.createElement("div");
+
+    certificateViewer.id = "certificate-viewer";
+
+    certificateViewer.className = "certificate-viewer";
+
+    certificateViewer.innerHTML = `
+
+    <div class="certificate-viewer-backdrop">
+
+      <div class="certificate-viewer-content">
+
+        <button
+          type="button"
+          class="certificate-viewer-close"
+          aria-label="Close certificate"
+        >
+          <i class="fas fa-times"></i>
+        </button>
+
+
+        <div class="certificate-viewer-header">
+
+          <span class="certificate-viewer-badge">
+            CERTIFICATE
+          </span>
+
+          <h2
+            class="certificate-viewer-title"
+            id="certificate-viewer-title"
+          >
+          </h2>
+
+          <p
+            class="certificate-viewer-issuer"
+            id="certificate-viewer-issuer"
+          >
+          </p>
+
+        </div>
+
+
+        <div class="certificate-viewer-image-wrap">
+
+          <img
+            id="certificate-viewer-image"
+            class="certificate-viewer-image"
+            src=""
+            alt="Certificate"
+          >
+
+        </div>
+
+
+        <div class="certificate-viewer-info">
+
+          <div>
+
+            <span>DATE</span>
+
+            <strong
+              id="certificate-viewer-date"
+            >
+            </strong>
+
+          </div>
+
+
+          <div>
+
+            <span>CREDENTIAL ID</span>
+
+            <strong
+              id="certificate-viewer-id"
+            >
+            </strong>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  `;
+
+    document.body.appendChild(certificateViewer);
   }
 
+  /* --------------------------------------------------------------------------
+   VIEW CERTIFICATE
+   -------------------------------------------------------------------------- */
 
-  if (closeCertModalBtn) {
-    closeCertModalBtn.addEventListener(
-      'click',
-      closeCertificateModal
-    );
-  }
+  if (certsGrid) {
+    certsGrid.addEventListener("click", (event) => {
+      const button = event.target.closest(".cert-view-btn");
 
-  if (certOkBtn) {
-    certOkBtn.addEventListener(
-      'click',
-      closeCertificateModal
-    );
-  }
-
-  if (certModal) {
-
-    certModal.addEventListener(
-      'click',
-      (e) => {
-
-        if (
-          e.target === certModal
-        ) {
-          closeCertificateModal();
-        }
+      if (!button) {
+        return;
       }
-    );
+
+      const certId = button.getAttribute("data-cert");
+
+      const certificate = certData[certId];
+
+      if (!certificate) {
+        console.error("Certificate not found:", certId);
+
+        return;
+      }
+
+      const title = document.getElementById("certificate-viewer-title");
+
+      const issuer = document.getElementById("certificate-viewer-issuer");
+
+      const image = document.getElementById("certificate-viewer-image");
+
+      const date = document.getElementById("certificate-viewer-date");
+
+      const id = document.getElementById("certificate-viewer-id");
+
+      if (title) {
+        title.textContent = certificate.title;
+      }
+
+      if (issuer) {
+        issuer.textContent = certificate.issuer;
+      }
+
+      if (image) {
+        image.src = certificate.image;
+
+        image.alt = certificate.title;
+      }
+
+      if (date) {
+        date.textContent = certificate.date;
+      }
+
+      if (id) {
+        id.textContent = certificate.id;
+      }
+
+      certificateViewer.classList.add("active");
+
+      document.body.style.overflow = "hidden";
+    });
   }
 
+  /* --------------------------------------------------------------------------
+   CLOSE CERTIFICATE VIEWER
+   -------------------------------------------------------------------------- */
+
+  function closeCertificateViewer() {
+    if (!certificateViewer) {
+      return;
+    }
+
+    certificateViewer.classList.remove("active");
+
+    document.body.style.overflow = "";
+  }
+
+  const certificateCloseButton = certificateViewer.querySelector(
+    ".certificate-viewer-close",
+  );
+
+  if (certificateCloseButton) {
+    certificateCloseButton.addEventListener("click", closeCertificateViewer);
+  }
+
+  const certificateBackdrop = certificateViewer.querySelector(
+    ".certificate-viewer-backdrop",
+  );
+
+  if (certificateBackdrop) {
+    certificateBackdrop.addEventListener("click", (event) => {
+      if (event.target === certificateBackdrop) {
+        closeCertificateViewer();
+      }
+    });
+  }
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closeCertificateViewer();
+    }
+  });
 
   /* --------------------------------------------------------------------------
      15. TERMINAL
      -------------------------------------------------------------------------- */
-  const terminalWindow =
-    document.getElementById(
-      'terminal-window'
-    );
 
-  const openTerminalBtn =
-    document.getElementById(
-      'open-terminal-btn'
-    );
+  const terminalWindow = document.getElementById("terminal-window");
 
-  const tMinBtn =
-    document.getElementById(
-      't-min-btn'
-    );
+  const openTerminalBtn = document.getElementById("open-terminal-btn");
 
-  const tCloseBtn =
-    document.getElementById(
-      't-close-btn'
-    );
+  const tMinBtn = document.getElementById("t-min-btn");
 
-  const tMaxBtn =
-    document.getElementById(
-      't-max-btn'
-    );
+  const tCloseBtn = document.getElementById("t-close-btn");
 
-  const terminalInput =
-    document.getElementById(
-      'terminal-input'
-    );
+  const tMaxBtn = document.getElementById("t-max-btn");
 
-  const terminalOutput =
-    document.getElementById(
-      'terminal-output'
-    );
+  const terminalInput = document.getElementById("terminal-input");
 
+  const terminalOutput = document.getElementById("terminal-output");
 
-  if (
-    openTerminalBtn &&
-    terminalWindow
-  ) {
+  if (openTerminalBtn && terminalWindow) {
+    openTerminalBtn.addEventListener("click", () => {
+      terminalWindow.classList.toggle("minimized");
 
-    openTerminalBtn.addEventListener(
-      'click',
-      () => {
-
-        terminalWindow.classList.toggle(
-          'minimized'
-        );
-
-        if (
-          !terminalWindow.classList.contains(
-            'minimized'
-          ) &&
-          terminalInput
-        ) {
-          terminalInput.focus();
-        }
+      if (!terminalWindow.classList.contains("minimized") && terminalInput) {
+        terminalInput.focus();
       }
-    );
+    });
   }
 
-
-  if (
-    tMinBtn &&
-    terminalWindow
-  ) {
-
-    tMinBtn.addEventListener(
-      'click',
-      () => {
-
-        terminalWindow.classList.toggle(
-          'minimized'
-        );
-      }
-    );
+  if (tMinBtn && terminalWindow) {
+    tMinBtn.addEventListener("click", () => {
+      terminalWindow.classList.toggle("minimized");
+    });
   }
 
-
-  if (
-    tCloseBtn &&
-    terminalWindow
-  ) {
-
-    tCloseBtn.addEventListener(
-      'click',
-      () => {
-
-        terminalWindow.classList.add(
-          'minimized'
-        );
-      }
-    );
+  if (tCloseBtn && terminalWindow) {
+    tCloseBtn.addEventListener("click", () => {
+      terminalWindow.classList.add("minimized");
+    });
   }
 
+  if (tMaxBtn && terminalOutput) {
+    tMaxBtn.addEventListener("click", () => {
+      terminalOutput.innerHTML = `
 
-  if (
-    tMaxBtn &&
-    terminalOutput
-  ) {
+          <div class="t-line text-cyan">
 
-    tMaxBtn.addEventListener(
-      'click',
-      () => {
+            Terminal output cleared.
 
-        terminalOutput.innerHTML =
-          `<div class="t-line text-cyan">
-             Terminal output cleared.
-           </div>`;
-      }
-    );
+          </div>
+
+        `;
+    });
   }
 
-
-  if (
-    terminalInput &&
-    terminalOutput
-  ) {
-
-    terminalInput.addEventListener(
-      'keydown',
-      (e) => {
-
-        if (e.key !== 'Enter') {
-          return;
-        }
-
-        const command =
-          terminalInput.value
-            .trim()
-            .toLowerCase();
-
-        terminalInput.value = '';
-
-        if (!command) {
-          return;
-        }
-
-        appendTerminalLine(
-          `frances@portfolio:~$ ${command}`,
-          'text-yellow'
-        );
-
-        processCommand(command);
+  if (terminalInput && terminalOutput) {
+    terminalInput.addEventListener("keydown", (e) => {
+      if (e.key !== "Enter") {
+        return;
       }
-    );
+
+      const command = terminalInput.value.trim().toLowerCase();
+
+      terminalInput.value = "";
+
+      if (!command) {
+        return;
+      }
+
+      appendTerminalLine(`frances@portfolio:~$ ${command}`, "text-yellow");
+
+      processCommand(command);
+    });
   }
 
-
-  function appendTerminalLine(
-    text,
-    className = ''
-  ) {
-
+  function appendTerminalLine(text, className = "") {
     if (!terminalOutput) {
       return;
     }
 
-    const line =
-      document.createElement(
-        'div'
-      );
+    const line = document.createElement("div");
 
-    line.className =
-      `t-line ${className}`;
+    line.className = `t-line ${className}`;
 
-    line.textContent =
-      text;
+    line.textContent = text;
 
-    terminalOutput.appendChild(
-      line
-    );
+    terminalOutput.appendChild(line);
 
-    terminalOutput.scrollTop =
-      terminalOutput.scrollHeight;
+    terminalOutput.scrollTop = terminalOutput.scrollHeight;
   }
 
-
   function processCommand(command) {
-
     switch (command) {
+      case "help":
+        appendTerminalLine("Available Commands:", "text-cyan");
 
-      case 'help':
+        appendTerminalLine("about     - Displays Frances biography");
 
+        appendTerminalLine("skills    - Shows technical skills");
+
+        appendTerminalLine("projects  - Lists featured projects");
+
+        appendTerminalLine("experience - Displays work experience");
+
+        appendTerminalLine("education - Displays education");
+
+        appendTerminalLine("certs     - Displays certifications");
+
+        appendTerminalLine("contact   - Displays contact information");
+
+        appendTerminalLine("theme     - Toggles light/dark mode");
+
+        appendTerminalLine("clear     - Clears the terminal");
+
+        appendTerminalLine("whoami    - Shows portfolio identity");
+
+        break;
+
+      case "about":
         appendTerminalLine(
-          'Available Commands:',
-          'text-cyan'
+          "Frances Margarett | Web Developer × UI Designer",
+          "text-cyan",
         );
 
         appendTerminalLine(
-          'about     - Displays Frances biography'
+          "BSIT student at Bestlink College of the Philippines.",
         );
 
         appendTerminalLine(
-          'skills    - Shows technical skills'
-        );
-
-        appendTerminalLine(
-          'projects  - Lists featured projects'
-        );
-
-        appendTerminalLine(
-          'experience - Displays work experience'
-        );
-
-        appendTerminalLine(
-          'education - Displays education'
-        );
-
-        appendTerminalLine(
-          'certs     - Displays certifications'
-        );
-
-        appendTerminalLine(
-          'contact   - Displays contact information'
-        );
-
-        appendTerminalLine(
-          'theme     - Toggles light/dark mode'
-        );
-
-        appendTerminalLine(
-          'clear     - Clears the terminal'
-        );
-
-        appendTerminalLine(
-          'whoami    - Shows portfolio identity'
+          "Focused on practical systems, web development, and UI design.",
         );
 
         break;
 
+      case "skills":
+        appendTerminalLine("Web: PHP, HTML, CSS, JavaScript");
 
-      case 'about':
+        appendTerminalLine("Database: MySQL, phpMyAdmin");
 
         appendTerminalLine(
-          'Frances Margarett | Web Developer × UI Designer',
-          'text-cyan'
+          "Design: Figma, UI Design, Wireframing, Prototyping",
         );
 
         appendTerminalLine(
-          'BSIT student at Bestlink College of the Philippines.'
-        );
-
-        appendTerminalLine(
-          'Focused on practical systems, web development, and UI design.'
+          "Tools: VS Code, Git, GitHub, XAMPP, FileZilla, NetBeans, IntelliJ IDEA",
         );
 
         break;
 
+      case "projects":
+        appendTerminalLine("1. eAssist PH");
 
-      case 'skills':
+        appendTerminalLine("2. eResponde");
+
+        appendTerminalLine("3. Sari App");
+
+        appendTerminalLine("4. eLibrary");
+
+        appendTerminalLine("5. Wedding Invitation & RSVP Generator");
+
+        appendTerminalLine("6. Wabi-Sabi Interface");
+
+        break;
+
+      case "experience":
+        appendTerminalLine("Constech Asia Corporation", "text-cyan");
+
+        appendTerminalLine("Role: System Developer / Developer");
 
         appendTerminalLine(
-          'Web: PHP, HTML, CSS, JavaScript'
-        );
-
-        appendTerminalLine(
-          'Database: MySQL, phpMyAdmin'
-        );
-
-        appendTerminalLine(
-          'Design: Figma, UI Design, Wireframing, Prototyping'
-        );
-
-        appendTerminalLine(
-          'Tools: VS Code, Git, GitHub, XAMPP, FileZilla, NetBeans, IntelliJ IDEA'
+          "Worked with PHP, MySQL, HTML, CSS, JavaScript, phpMyAdmin, XAMPP and FileZilla.",
         );
 
         break;
 
-
-      case 'projects':
-
+      case "education":
         appendTerminalLine(
-          '1. Inventory / Management System'
+          "Bachelor of Science in Information Technology",
+          "text-cyan",
         );
 
-        appendTerminalLine(
-          '2. Coffee Shop POS System'
-        );
+        appendTerminalLine("Bestlink College of the Philippines");
+
+        appendTerminalLine("Currently pursuing BSIT.");
+
+        break;
+
+      case "certs":
+        appendTerminalLine("NC II — Computer Systems Servicing");
+
+        appendTerminalLine("Bookkeeping Certificate");
 
         appendTerminalLine(
-          '3. Math Quiz Website'
-        );
-
-        appendTerminalLine(
-          '4. Personal Portfolio'
-        );
-
-        appendTerminalLine(
-          '5. Interactive Folder Interface'
-        );
-
-        appendTerminalLine(
-          '6. Wabi-Sabi Interface'
+          "NC III Certificate — Previously obtained, currently expired",
         );
 
         break;
 
+      case "contact":
+        appendTerminalLine("Location: Caloocan City, Philippines");
 
-      case 'experience':
+        appendTerminalLine("Email: [YOUR EMAIL]");
 
-        appendTerminalLine(
-          'Constech Asia Corporation',
-          'text-cyan'
-        );
+        appendTerminalLine("GitHub: [YOUR GITHUB]");
 
-        appendTerminalLine(
-          'Role: System Developer / Developer'
-        );
-
-        appendTerminalLine(
-          'Worked with PHP, MySQL, HTML, CSS, JavaScript, phpMyAdmin, XAMPP and FileZilla.'
-        );
+        appendTerminalLine("LinkedIn: [YOUR LINKEDIN]");
 
         break;
 
-
-      case 'education':
-
-        appendTerminalLine(
-          'Bachelor of Science in Information Technology',
-          'text-cyan'
-        );
-
-        appendTerminalLine(
-          'Bestlink College of the Philippines'
-        );
-
-        appendTerminalLine(
-          'Currently pursuing BSIT.'
-        );
-
-        break;
-
-
-      case 'certs':
-
-        appendTerminalLine(
-          'NC II — Computer Systems Servicing'
-        );
-
-        appendTerminalLine(
-          'Bookkeeping Certificate'
-        );
-
-        appendTerminalLine(
-          'NC III Certificate — Previously obtained, currently expired'
-        );
-
-        break;
-
-
-      case 'contact':
-
-        appendTerminalLine(
-          'Location: Caloocan City, Philippines'
-        );
-
-        appendTerminalLine(
-          'Email: [YOUR EMAIL]'
-        );
-
-        appendTerminalLine(
-          'GitHub: [YOUR GITHUB]'
-        );
-
-        appendTerminalLine(
-          'LinkedIn: [YOUR LINKEDIN]'
-        );
-
-        break;
-
-
-      case 'theme':
-
+      case "theme":
         if (themeBtn) {
           themeBtn.click();
         }
 
-        appendTerminalLine(
-          'Theme toggled.',
-          'text-cyan'
-        );
+        appendTerminalLine("Theme toggled.", "text-cyan");
 
         break;
 
-
-      case 'clear':
-
-        terminalOutput.innerHTML =
-          '';
+      case "clear":
+        terminalOutput.innerHTML = "";
 
         break;
 
+      case "whoami":
+        appendTerminalLine("Frances Margarett", "text-cyan");
 
-      case 'whoami':
+        appendTerminalLine("Web Developer × UI Designer");
 
-        appendTerminalLine(
-          'Frances Margarett',
-          'text-cyan'
-        );
-
-        appendTerminalLine(
-          'Web Developer × UI Designer'
-        );
-
-        appendTerminalLine(
-          'BSIT Student'
-        );
+        appendTerminalLine("BSIT Student");
 
         break;
-
 
       default:
-
         appendTerminalLine(
           `Command not recognized: '${command}'. Type 'help' for available commands.`,
-          'text-muted'
+          "text-muted",
         );
     }
   }
 
-
   /* --------------------------------------------------------------------------
      16. COPY EMAIL
      -------------------------------------------------------------------------- */
-  const copyEmailBtn =
-    document.getElementById(
-      'copy-email-btn'
-    );
 
-  const emailText =
-    document.getElementById(
-      'email-text'
-    );
+  const copyEmailBtn = document.getElementById("copy-email-btn");
 
+  const emailText = document.getElementById("email-text");
 
-  if (
-    copyEmailBtn &&
-    emailText
-  ) {
+  if (copyEmailBtn && emailText) {
+    copyEmailBtn.addEventListener("click", async () => {
+      const email = emailText.textContent.trim();
 
-    copyEmailBtn.addEventListener(
-      'click',
-      async () => {
+      try {
+        await navigator.clipboard.writeText(email);
 
-        const email =
-          emailText.textContent.trim();
-
-        try {
-
-          await navigator.clipboard.writeText(
-            email
-          );
-
-          showToast(
-            'Email address copied!'
-          );
-
-        } catch (error) {
-
-          showToast(
-            `Email: ${email}`
-          );
-        }
+        showToast("Email address copied!");
+      } catch (error) {
+        showToast(`Email: ${email}`);
       }
-    );
+    });
   }
-
 
   /* --------------------------------------------------------------------------
      17. TOAST NOTIFICATIONS
      -------------------------------------------------------------------------- */
-  function showToast(message) {
 
-    const container =
-      document.getElementById(
-        'toast-container'
-      );
+  function showToast(message) {
+    const container = document.getElementById("toast-container");
 
     if (!container) {
       return;
     }
 
-    const toast =
-      document.createElement(
-        'div'
-      );
+    const toast = document.createElement("div");
 
-    toast.className =
-      'toast';
+    toast.className = "toast";
 
-    toast.innerHTML =
-      `<i class="fas fa-check-circle text-cyan"></i> ${message}`;
+    toast.innerHTML = `
 
-    container.appendChild(
-      toast
-    );
+      <i class="fas fa-check-circle text-cyan"></i>
+
+      ${message}
+
+    `;
+
+    container.appendChild(toast);
 
     setTimeout(() => {
+      toast.style.opacity = "0";
 
-      toast.style.opacity =
-        '0';
-
-      toast.style.transform =
-        'translateY(20px)';
+      toast.style.transform = "translateY(20px)";
 
       setTimeout(() => {
-
         toast.remove();
-
       }, 300);
-
     }, 2800);
   }
-
 
   /* --------------------------------------------------------------------------
      18. CONTACT FORM FEEDBACK
      -------------------------------------------------------------------------- */
-  const contactForm =
-    document.getElementById(
-      'contact-form'
-    );
 
-  const formFeedback =
-    document.getElementById(
-      'form-feedback'
-    );
+  const contactForm = document.getElementById("contact-form");
 
+  const formFeedback = document.getElementById("form-feedback");
 
   if (contactForm) {
+    contactForm.addEventListener("submit", () => {
+      if (formFeedback) {
+        formFeedback.innerHTML = `
 
-    contactForm.addEventListener(
-      'submit',
-      () => {
+            <span class="text-cyan">
 
-        if (formFeedback) {
-
-          formFeedback.innerHTML =
-            `<span class="text-cyan">
               <i class="fas fa-spinner fa-spin"></i>
-              Transmitting message...
-            </span>`;
-        }
-      }
-    );
-  }
 
+              Transmitting message...
+
+            </span>
+
+          `;
+      }
+    });
+  }
 
   /* --------------------------------------------------------------------------
      19. ESC KEY — CLOSE MODALS / MENU
      -------------------------------------------------------------------------- */
-  document.addEventListener(
-    'keydown',
-    (e) => {
 
-      if (e.key !== 'Escape') {
-        return;
-      }
-
-      if (
-        projectModal &&
-        projectModal.classList.contains(
-          'active'
-        )
-      ) {
-
-        projectModal.classList.remove(
-          'active'
-        );
-      }
-
-      if (
-        certModal &&
-        certModal.classList.contains(
-          'active'
-        )
-      ) {
-
-        certModal.classList.remove(
-          'active'
-        );
-      }
-
-      if (
-        navList &&
-        navList.classList.contains(
-          'nav-active'
-        )
-      ) {
-
-        navList.classList.remove(
-          'nav-active'
-        );
-
-        if (burger) {
-          burger.classList.remove(
-            'toggle'
-          );
-        }
-      }
-
-      document.body.style.overflow =
-        '';
+  document.addEventListener("keydown", (e) => {
+    if (e.key !== "Escape") {
+      return;
     }
-  );
 
+    if (projectModal && projectModal.classList.contains("active")) {
+      projectModal.classList.remove("active");
+    }
+
+    if (certModal && certModal.classList.contains("active")) {
+      certModal.classList.remove("active");
+    }
+
+    if (navList && navList.classList.contains("nav-active")) {
+      navList.classList.remove("nav-active");
+
+      if (burger) {
+        burger.classList.remove("toggle");
+      }
+    }
+
+    document.body.style.overflow = "";
+  });
 });
