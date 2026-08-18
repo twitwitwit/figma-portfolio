@@ -499,11 +499,11 @@ document.addEventListener("DOMContentLoaded", () => {
     1: {
       title: "eAssist PH",
 
-      badge: "WEB APPLICATION",
+      badge: "WEB",
 
       img: "images/eassist-ph.png",
 
-      tags: ["PHP", "MySQL", "HTML", "CSS", "JavaScript"],
+      tags: ["HTML", "CSS", "JavaScript"],
 
       challenge:
         "People often have difficulty finding reliable emergency hotline information and understanding the requirements and procedures for important documents.",
@@ -515,11 +515,11 @@ document.addEventListener("DOMContentLoaded", () => {
     2: {
       title: "eResponde",
 
-      badge: "WEB APPLICATION",
+      badge: "WEB",
 
       img: "images/eresponde.png",
 
-      tags: ["PHP", "MySQL", "HTML", "CSS", "JavaScript"],
+      tags: ["HTML", "CSS", "JavaScript"],
 
       challenge:
         "People need a fast and accessible way to report crimes, fires, and other emergencies when immediate assistance is needed.",
@@ -529,19 +529,19 @@ document.addEventListener("DOMContentLoaded", () => {
     },
 
     3: {
-      title: "Sari App",
+      title: "Constech Asia Corporation - Inventory Management System",
 
-      badge: "MOBILE APPLICATION",
+      badge: "WEB",
 
-      img: "images/sari-app.jpg",
+      img: "images/ims.png",
 
-      tags: ["Java", "Mobile", "Barcode", "Inventory", "Database"],
+      tags: ["HTML", "CSS", "JavaScript", "PHP", "MySQL"],
 
       challenge:
-        "Sari-sari store owners often manage product prices, inventory, and expiration dates manually.",
+        "A company needs a digital system to manage product inventory, track purchase and selling prices, and monitor sales effectively.",
 
       solution:
-        "Created a mobile application that scans product barcodes, displays purchase and selling prices, manages inventory, and helps monitor product expiration dates.",
+        "Created a web application that allows users to displays purchase and selling prices, manages inventory, and helps monitor sales and stock levels efficiently.",
     },
 
     4: {
@@ -549,9 +549,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
       badge: "WEB APPLICATION",
 
-      img: "images/elibrary.jpg",
+      img: "images/elibrary.png",
 
-      tags: ["PHP", "MySQL", "HTML", "CSS", "JavaScript"],
+      tags: ["React", "TypeScript", "HTML", "CSS", "JavaScript", "PostgreSQL"],
 
       challenge:
         "A library needs an organized digital system for managing books, users, and library records.",
@@ -561,13 +561,13 @@ document.addEventListener("DOMContentLoaded", () => {
     },
 
     5: {
-      title: "Wedding Invitation & RSVP Generator",
+      title: "LUMEA | Wedding Invitation & RSVP Generator",
 
       badge: "WEB APPLICATION",
 
-      img: "images/wedding-invitation.jpg",
+      img: "images/wedding-invitation.png",
 
-      tags: ["HTML", "CSS", "JavaScript", "RSVP", "Responsive Design"],
+      tags: ["HTML", "CSS", "JavaScript", "TypeScript", "React", "Supabase"],
 
       challenge:
         "Event organizers need an easy way to create digital invitations while keeping track of the people they invited and their RSVP responses.",
@@ -576,26 +576,6 @@ document.addEventListener("DOMContentLoaded", () => {
         "Designed a wedding invitation generator that allows creators to build digital invitations and track RSVP responses from invited guests.",
     },
 
-    6: {
-      title: "Wabi-Sabi Interface",
-
-      badge: "DESIGN EXPERIMENT",
-
-      img: "images/wabi-sabi.jpg",
-
-      tags: [
-        "Figma",
-        "UI Design",
-        "Visual Experimentation",
-        "Interaction Design",
-      ],
-
-      challenge:
-        "Explore an interface philosophy that intentionally moves away from perfect symmetry and rigid visual structure.",
-
-      solution:
-        "Designed an experimental interface inspired by wabi-sabi, using imperfect layouts and creative visual elements to explore alternative interaction patterns.",
-    },
   };
 
   let showingAllProjects = false;
